@@ -5,6 +5,8 @@
 #define M 12
 
 class CPArbol{
+	class Par;
+	
 	private:
 		int ultimo;
 		Par* arbolVecPar;
@@ -13,21 +15,27 @@ class CPArbol{
 			public:
 				char elemento;
 				int prioridad;
-
-				Elemento(char elemento,int prioridad){
+				
+				Par(){
+					elemento ='\0';
+					prioridad = 0;
+				}
+				
+				Par(char elemento,int prioridad){
 					this->elemento = elemento;
 					this->prioridad = prioridad;
 				}
 				
-				~Elemento(){
+				~Par(){
 					
 				}
 				
-				Par operator=(const Par& otro){
+				Par* operator=(const Par& otro){
 					this->elemento = otro.elemento;
 					this->prioridad = otro.prioridad;
+					return this;
 				}
-		}
+		};
 		
 
 	public:
@@ -51,7 +59,7 @@ class CPArbol{
 		void agregar(char elemento,int prioridad){
 			++ultimo;
 			
-			arbolVecPar[ultimo] = new Par(elemento, prioridad);
+			arbolVecPar[ultimo] = *(new Par(elemento, prioridad));
 			Par cajaExtra = arbolVecPar[ultimo];
 			
 			//Proceso de reacomodamiento
@@ -73,7 +81,7 @@ class CPArbol{
 			int posCajaEx = 0;
 			int acomodado = 0;
 			Par cajaExtra = arbolVecPar[1];
-			while(posAct*2 + 1 <= ultima && !acomodado){
+			while(posAct*2 + 1 <= ultimo && !acomodado){
 				cajaExtra = arbolVecPar[posAct*2];
 				posCajaEx = posAct*2;
 				if(cajaExtra.prioridad > arbolVecPar[posAct*2 + 1].prioridad){
