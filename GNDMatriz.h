@@ -144,11 +144,23 @@ class Grafo {
 		
 		
 		Vertice primerVertice(){
-			return 1;
+			Vertice primero = 0;
+			
+			if(ultimo){
+				primero = 1;
+			}
+			
+			return primero;
 		}
 		
 		Vertice steVertice(Vertice v){
-			return v+1;
+			Vertice ste = 0;
+			
+			if(v+1 <= ultimo){
+				ste = v+1;
+			}
+			
+			return ste;
 		}
 		
 		Vertice primerVertAdy(Vertice v){
@@ -158,7 +170,7 @@ class Grafo {
 			}
 			
 			if(vAdy > ultimo){
-				vAdy = -1;
+				vAdy = 0;
 			}
 			
 			return vAdy;
@@ -171,7 +183,7 @@ class Grafo {
 			}
 			
 			if(vAdy > ultimo){
-				vAdy = -1;
+				vAdy = 0;
 			}
 			
 			return vAdy;

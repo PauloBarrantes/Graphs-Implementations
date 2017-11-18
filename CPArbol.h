@@ -2,7 +2,7 @@
 #define _coladeprioridadArbol_2017
 
 #include <iostream>
-#define M 12
+#define Q 12
 
 class CPArbol{
 	class Par;
@@ -41,7 +41,7 @@ class CPArbol{
 	public:
 		CPArbol(){
 			ultimo = 0;
-			arbolVecPar = new Par[M];
+			arbolVecPar = new Par[Q];
 		}
 		
 		~CPArbol(){
