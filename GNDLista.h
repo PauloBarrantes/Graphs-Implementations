@@ -5,9 +5,13 @@ class GNDLista {
     class Vertice;
     class Arista;
     private:
+        Vertice primerVertice;
+        int numeroVertices;
         class Vertice{
             public:
                 char* etiq;
+                Arista* sublista;
+                int numAdy;
                 Vertice(char*);
                 ~Vertice();
         }
