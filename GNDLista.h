@@ -39,6 +39,13 @@ class GNDLista {
         int numVertices();
         int numVerticesAdy();
         int adyacentes(Vertice*, Vertice*)
+
+        Vertice* primerVertice();
+        Vertice* siguienteVertice(Vertice*);
+        Vertice* primerVerticeAdy(Vertice*);
+        Vertice* siguienteVerticeAdy(Vertice*);
+
+
 };
 
 #endif
