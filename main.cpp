@@ -1,18 +1,27 @@
 #include <iostream>
 #include "DiccionarioLSE.h"
+#include "GNDLista.h"
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-    DiccionarioLSE<int> diccio;
-    diccio.agregar(1);
-    diccio.agregar(2);
-    diccio.agregar(3);
-    diccio.agregar(4);
-    diccio.imprimir(cout);
-    diccio.borrar(4);
-    diccio.agregar(5);
-    diccio.agregar(6);
-    diccio.imprimir(cout);
-    cout << endl;
+
+
+    cout<< "Pruebas del Grafo:" <<endl;
+    Grafo* grafito = new Grafo();
+
+    Grafo::Vertice v1  = grafito->agrVertice('a');
+    Grafo::Vertice v2  =grafito->agrVertice('b');
+    Grafo::Vertice v3  =grafito->agrVertice('c');
+    Grafo::Vertice v4  =grafito->agrVertice('d');
+    grafito->imprimir(cout);
+    cout << "-----------------------------------------------------"<< endl;
+    grafito->agrArista(v1, v2, 3);
+    grafito->agrArista(v3, v4, 30);
+    grafito->agrArista(v2, v4, 10);
+    grafito->agrArista(v1, v4, 6);
+
+    grafito->imprimir(cout);
+
     return 0;
+
 }
