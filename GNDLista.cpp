@@ -9,8 +9,7 @@ using namespace std;
     }
     GNDLista::Vertice::~Vertice(){
 
-<<<<<<< HEAD
-    }
+    }s
     //Arista
     GNDLista::Arista::Arista(Vertice* v1, Vertice* v2, int peso){
         this->VerticeA = v1;
@@ -67,43 +66,3 @@ using namespace std;
     int GNDLista::adyacentes(Vertice, Vertice){
 
     }
-=======
-    Vertice(char){
-
-    }
-    ~Vertice(){
-
-    }
-
-    Arista(Vertice*, Vertice*, int){
-
-    }
-    ~Arista(){
-
-    }
-
-    public:
-        Grafo(){
-
-        }
-        ~Grafo(){
-
-        }
-        void vaciar(){
-
-        }
-        int vacia(){
-
-        }
-        Vertice agrVertice (char) // Cambiar el return a vértice
-        int peso(Vertice,Vertice);
-        void agrArista(Vertice,Vertice,int);
-        void modificarPeso(Vertice,Vertice, int);
-        void elimVertice(Vertice);
-        void elimArista(Vertice, Vertice);
-        void modificarEtiqueta(Vertice, char);
-        char etiqueta(Vertice);
-        int numVertices();
-        int numVerticesAdy();
-        int adyacentes(Vertice, Vertice)
->>>>>>> e612b0485cdf065f73c47f32c86f1937b2acf12a
