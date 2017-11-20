@@ -1,50 +1,57 @@
 #ifndef grafonodirigido_2017
 #define grafonodirigido_2017
-
-class GNDLista {
-    class Vertice;
+#include <iostream>
+using namespace std;
+class Grafo {
+    class Caja;
     class Arista;
     private:
-        Vertice primerVertice;
         int numeroVertices;
-        class Vertice{
+        class Caja{
             public:
-                char* etiq;
+                char etiq;
+                Caja* siguienteCaja;
                 Arista* sublista;
                 int numAdy;
-                Vertice(char*);
-                ~Vertice();
-        }
+                Caja(char);
+                ~Caja();
+                ostream& imprimirC(ostream&);
+        };
         class Arista{
             public:
                 int peso;
-                Vertice* VerticeA;
-                Vertice* VerticeB;
-                Arista(Vertice*, Vertice*, int);
+                Caja* verticeA;
+                Arista* siguienteArista;
+                Arista(Caja*, int);
                 ~Arista();
-        }
+                ostream& imprimirA(ostream&);
+        };
+        Caja* ultimo;
+        Caja* primero;
+
     public:
-        GNDLista();
-        ~GNDLista();
+        typedef Caja* Vertice;
+        Grafo();
+        ~Grafo();
         void vaciar();
         int vacia();
-        Vertice* agrVertice (char); // Cambiar el return a vértice
-        int peso(Vertice*,Vertice*);
-        void agrArista(Vertice*,Vertice*,int);
-        void modificarPeso(Vertice*,Vertice*, int);
-        void elimVertice(Vertice*);
-        void elimArista(Vertice*, Vertice*);
-        void modificarEtiqueta(Vertice*, char);
-        char etiqueta(Vertice*);
+        Vertice agrVertice (char); // Cambiar el return a vértice
+        int peso(Vertice,Vertice);
+        void agrArista(Vertice,Vertice,int);
+        void modificarPeso(Vertice,Vertice, int);
+        void elimVertice(Vertice);
+        void elimArista(Vertice, Vertice);
+        void modificarEtiqueta(Vertice, char);
+        char etiqueta(Vertice);
         int numVertices();
-        int numVerticesAdy();
-        int adyacentes(Vertice*, Vertice*)
-
-        Vertice* primerVertice();
-        Vertice* siguienteVertice(Vertice*);
-        Vertice* primerVerticeAdy(Vertice*);
-        Vertice* siguienteVerticeAdy(Vertice*);
-
+        int numVerticesAdy(Vertice);
+        int adyacentes(Vertice, Vertice);
+        ostream& imprimir(ostream&);
+        Vertice primerVertice();
+        Vertice siguienteVertice(Vertice);
+        Vertice primerVerticeAdy(Vertice);
+        Vertice siguienteVerticeAdy(Vertice);
+        Vertice buscarVertice(char);
 
 };
 

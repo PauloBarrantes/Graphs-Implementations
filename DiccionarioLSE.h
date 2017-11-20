@@ -47,6 +47,7 @@ class DiccionarioLSE  {
         }
         void vaciar(){
             delete primero;
+            numeroElementos = 0;
             this->primero = 0;
             this->ultimo = 0;
         }

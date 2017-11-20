@@ -32,67 +32,69 @@ void Menu::controlador(){
 void Menu::obGrafos(){
     InstruccionesOB();
     int instruccion = 0;
-    cin >> instruccion;
-
-    switch (instruccion) {
-        case 0:
-            Salir();
-        break;
-        case 1:
-            iniciar();
-        break;
-        case 2:
-            destruir();
-        break;
-        case 3:
-            vaciar();
-        break;
-        case 4:
-            vacia();
-        break;
-        case 5:
-            agrVertice();
-        break;
-        case 6:
-            agrArista();
-        break;
-        case 7:
-            elimVertice();
-        break;
-        case 8:
-            elimArista();
-        break;
-        case 9:
-            modificarEtiqueta();
-        break;
-        case 10:
-            modificarPeso();
-        break;
-        case 11:
-            peso();
-        break;
-        case 12:
-            numVertices();
-        break;
-        case 13:
-            numVerticesAdy();
-        break;
-        case 14:
-            adyacentes():
-        break;
-        case 15:
-            primerVertice();
-        break;
-        case 16:
-            siguienteVertice();
-        break;
-        case 17:
-            primerVertice();
-        break;
-        case 18:
-            siguienteVerticeAdy();
-        break;
-    }
+    int seguir = 1
+    do{
+        cin >> instruccion;
+        switch (instruccion) {
+            case 0:
+                seguir = 0;
+            break;
+            case 1:
+                iniciar();
+            break;
+            case 2:
+                destruir();
+            break;
+            case 3:
+                vaciar();
+            break;
+            case 4:
+                vacia();
+            break;
+            case 5:
+                agrVertice();
+            break;
+            case 6:
+                agrArista();
+            break;
+            case 7:
+                elimVertice();
+            break;
+            case 8:
+                elimArista();
+            break;
+            case 9:
+                modificarEtiqueta();
+            break;
+            case 10:
+                modificarPeso();
+            break;
+            case 11:
+                peso();
+            break;
+            case 12:
+                numVertices();
+            break;
+            case 13:
+                numVerticesAdy();
+            break;
+            case 14:
+                adyacentes():
+            break;
+            case 15:
+                primerVertice();
+            break;
+            case 16:
+                siguienteVertice();
+            break;
+            case 17:
+                primerVertice();
+            break;
+            case 18:
+                siguienteVerticeAdy();
+            break;
+        }
+    } while (seguir)
 }
 
 void Menu::InstruccionesOB(){
@@ -117,9 +119,7 @@ void Menu::InstruccionesOB(){
     Cout<<" (17) -> Para ver el primer Vértice adyacente a un vértice "<<endl;
     Cout<<" (18) -> Para ver el siguiente Vértice adyacente a un vértice"<<endl;
 }
-void Menu::Salir(){
 
-}
 void Menu::iniciar(){
 
 }
@@ -181,10 +181,12 @@ void Menu::siguienteVerticeAdy(){
 void Menu::algoritmosGrafos(){
     InstruccionesAlgoritmos();
     int instruccion = 0;
+    int seguir = 1;
+    do {
     cin >> instruccion;
     switch (instruccion) {
         case 0:
-            Salir();
+            seguir = 0;
         case 1:
             dijkstra();
         break;
@@ -206,7 +208,12 @@ void Menu::algoritmosGrafos(){
         case 7:
             problemaDelVendedor();
         break;
-    }
+        default:
+            std::cerr << "Tecla Equivocada" << '\n';
+            break;
+
+        }
+    }   while(seguir)
 }
 
 void Menu::InstruccionesAlgoritmos(){
