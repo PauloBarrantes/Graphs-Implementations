@@ -18,23 +18,7 @@ using namespace std;
         }
     }
 
-<<<<<<< HEAD
-    }s
-=======
-    ostream& Grafo::Caja::imprimirC(ostream& salida){
-        salida << "Vertice: " << this->etiq << endl;
-        salida << "Adyacentes:"<< endl;
-        if(sublista != 0){
-            (this->sublista)->imprimirA(salida);
-        }
 
-        if(siguienteCaja != 0){
-            (this->siguienteCaja)->imprimirC(salida);
-        }
-        return salida;
-    }
-
->>>>>>> 240cef2b0b5d8f43631261e354c127cd8652ee00
     //Arista
     ostream& Grafo::Arista::imprimirA(ostream& salida){
         salida << "---->"<<(this->verticeA)->etiq<< " Peso: " << this->peso <<endl;
@@ -208,8 +192,6 @@ using namespace std;
         }
         return etiqueta;
     }
-<<<<<<< HEAD
-=======
     int Grafo::numVertices(){
         return numeroVertices;
     }
@@ -286,4 +268,3 @@ using namespace std;
         primero->imprimirC(salida);
         return salida;
     }
->>>>>>> 240cef2b0b5d8f43631261e354c127cd8652ee00

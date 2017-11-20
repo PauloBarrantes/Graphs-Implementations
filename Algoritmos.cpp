@@ -65,7 +65,7 @@ using namespace std;
 		Grafo* Algoritmos::copiar(Grafo* g1,Grafo*g2){
 
 		}
-		void Algoritmos::Dijkstra(Grafo* grafo, Grafo::Vertice vertice){
+		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
 			Relaciones1_1<Grafo::Vertice, int > R11;
 			Diccionarios<Grafo::Vertice> diccionario;
 			int distancias [grafo->numeroVertices()];
@@ -87,13 +87,62 @@ using namespace std;
 
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
-			DiccionarioLSE diccionario;
+			DiccionarioLSE<Grafo::Vertice>diccionario;
+			CdCd<Grafo::Vertice> conjunto;
+			CdP<Grafo::Arista> cola;
+			int numAristas = 0;
+			// Primero encolamos en el vector heap todas las aristas, usando el peso como prioridad
+
+
+			// Luego metemos en Conjuntos de Conjuntos todos los vértices
+
+
+			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
+
+			// La condición de parada es que numAristas sea numVertices-1
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
+			Relaciones1_1<Grafo::Vertice, int > R11;
+			DiccionarioLSE<Grafo::Vertice> diccionario;
+			int costos [grafo->numeroVertices()-1];
+			Grafo::Vertice verticesConectados [grafo->numeroVertices()-1];
+			Grafo::Vertice v = G->primerVertice();
+			// Llenamos los arreglos y creamos las relaciones 1 a 1
+			for(int i = 0; grafo->numeroVertices()-1; ++i){
+				R11.agregar(v, i);
+				costos[i] = infty;
+				verticesConectados[i] =	v;
+				v = grafo->siguienteVertice(v);
+			}
+			//Marcamos los adyacentes a A
+			v= G->primerVertice();
+
+			while(diccionario.numeroElementos() != G.numeroVertices()-1){
+
+
+
+			}
+
 
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
-
+			int numeroVertices;
+			int caminoMásCorto = 0;
+			int caminoMásCortoAct = 0;
+		}
+		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice){
+			while(!diccionario.pertenece(vertice)){
+				if(){ // Preguntamos por factibilidad
+					if(){//Preguntamos por condición de parada
+						if(caminoMásCortoAct < caminoMásCorto){
+							caminoMásCorto = caminoMásCortoAct;
+						}
+					}else{
+						problemaDelVendedorR(grafo, grafo->siguienteVerticeAdy(grafo));//Hacemos el llamado recursivo
+					}
+					diccionario =
+				}
+			}
 		}

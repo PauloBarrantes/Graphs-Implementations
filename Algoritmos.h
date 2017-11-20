@@ -19,6 +19,7 @@ class Algoritmos{
 		Grafo*  copiar(Grafo*,Grafo*);
 		void kruskal(Grafo*);
 		void prim (Grafo*);
+		void Algoritmos::dijkstra(Grafo*, Grafo::Vertice);
 		void problemaDelVendedor(Grafo*);
 };
 
