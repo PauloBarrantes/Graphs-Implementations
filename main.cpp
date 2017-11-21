@@ -6,22 +6,34 @@ using namespace std;
 
 int main(int argc, char const *argv[]) {
 
+  cout << "Pruebas del CDCD:" << endl;
 
-    cout<< "Pruebas del Grafo:" <<endl;
-    Grafo* grafito = new Grafo();
+  CDCD<char> cDcD;
 
-    Grafo::Vertice v1  = grafito->agrVertice('a');
-    Grafo::Vertice v2  =grafito->agrVertice('b');
-    Grafo::Vertice v3  =grafito->agrVertice('c');
-    Grafo::Vertice v4  =grafito->agrVertice('d');
-    grafito->imprimir(cout);
-    cout << "-----------------------------------------------------"<< endl;
-    grafito->agrArista(v1, v2, 3);
-    grafito->agrArista(v3, v4, 30);
-    grafito->agrArista(v2, v4, 10);
-    grafito->agrArista(v1, v4, 6);
 
-    grafito->imprimir(cout);
+  cDcD.agregarConjunto(1, 'A');
+  cDcD.imprimir(cout);
+  cDcD.agregarConjunto(2, 'B');
+  cDcD.imprimir(cout);
+  cDcD.unirConjuntos(1,2);
+  cDcD.imprimir(cout);
+
+
+    // cout<< "Pruebas del Grafo:" <<endl;
+    // Grafo* grafito = new Grafo();
+    //
+    // Grafo::Vertice v1  = grafito->agrVertice('a');
+    // Grafo::Vertice v2  =grafito->agrVertice('b');
+    // Grafo::Vertice v3  =grafito->agrVertice('c');
+    // Grafo::Vertice v4  =grafito->agrVertice('d');
+    // grafito->imprimir(cout);
+    // cout << "-----------------------------------------------------"<< endl;
+    // grafito->agrArista(v1, v2, 3);
+    // grafito->agrArista(v3, v4, 30);
+    // grafito->agrArista(v2, v4, 10);
+    // grafito->agrArista(v1, v4, 6);
+    //
+    // grafito->imprimir(cout);
 
     return 0;
 

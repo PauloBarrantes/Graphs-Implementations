@@ -49,7 +49,8 @@ class CDCD{
         }
       }
       ostream& imprimir(ostream& salida){
-        this->elemento->imprimir(salida);
+        cout << this->elemento;
+        //this->elemento->imprimir(salida);
         salida<< ", ";
         if(siguienteElemento){
           this->siguienteElemento->imprimir(salida);
@@ -76,14 +77,14 @@ class CDCD{
       }
       void agregarElemento(T elem){
         CajitaElem* nuevoElemento = new CajitaElem(elem);
-        nuevoElemento->siguienteElemento = conj1->primerElemento;
-        conj1->primerElemento = nuevoElemento;
+        nuevoElemento->siguienteElemento = this->primerElemento;
+        this->primerElemento = nuevoElemento;
       }
       ostream& imprimir(ostream& salida){
         salida << this->identificador;
-        if(primerElemento){
+        if(this->primerElemento){
           salida<<" {";
-          primerElemento->imprimir(salida);
+          this->primerElemento->imprimir(salida);
           salida<<"}, ";
         }
         return salida;
@@ -100,7 +101,7 @@ class CDCD{
       }
     }
     void vaciar(){
-      delete CDCD;
+      delete this;
       this->primerConjunto = 0;
     }
     bool vacio(){
@@ -141,6 +142,13 @@ class CDCD{
       anterior->siguiente = conjB->siguiente;
       conjB->siguiente = 0;
       delete conjB;
+    }
+    ostream& imprimir(ostream& salida){
+      salida << "CDCD:"<< endl;
+      if(this->primerConjunto){
+        this->primerConjunto->imprimir(salida);
+      }
+      return salida;
     }
 };
 
