@@ -1,5 +1,8 @@
 #ifndef ConjuntoDeConjuntos_2017
 #define ConjuntoDeConjuntos_2017
+#include <iostream>
+
+using namespace std;
 
 template <class T>
 class CDCD{
@@ -12,7 +15,7 @@ class CDCD{
       Conjunto* buscado = 0;
       Conjunto* actual = this->primerConjunto;
       bool encontro = false;
-      while(actual){
+      while(actual != 0){
         if(actual->identificador == conjId){
           encontro = true;
           buscado = actual;
@@ -25,7 +28,7 @@ class CDCD{
       Conjunto* anterior = 0;
       Conjunto* actual = this->primerConjunto;
       bool encontro = false;
-      while(actual){
+      while(actual != 0){
         if(actual->siguiente == conj1){
           encontro = true;
           anterior = actual;
@@ -38,13 +41,13 @@ class CDCD{
     class CajitaElem {
      public:
       T elemento;
-      CajitaElem * siguienteElemento;
+      CajitaElem* siguienteElemento;
       CajitaElem(T elemento){
         this->elemento = elemento;
-        siguienteElemento = 0;
+        this->siguienteElemento = 0;
       }
       ~CajitaElem(){
-        if(siguienteElemento){
+        if(this->siguienteElemento != 0){
           delete siguienteElemento;
         }
       }
@@ -52,7 +55,7 @@ class CDCD{
         cout << this->elemento;
         //this->elemento->imprimir(salida);
         salida<< ", ";
-        if(siguienteElemento){
+        if(siguienteElemento != 0){
           this->siguienteElemento->imprimir(salida);
         }
         return salida;
@@ -71,7 +74,7 @@ class CDCD{
       }
       ~Conjunto(){
         delete primerElemento;
-        if(this->siguiente){
+        if(this->siguiente != 0){
           delete siguiente;
         }
       }
@@ -82,10 +85,13 @@ class CDCD{
       }
       ostream& imprimir(ostream& salida){
         salida << this->identificador;
-        if(this->primerElemento){
+        if(this->primerElemento != 0){
           salida<<" {";
           this->primerElemento->imprimir(salida);
           salida<<"}, ";
+        }
+        if(this->siguiente != 0){
+          this->siguiente->imprimir(salida);
         }
         return salida;
       }
@@ -96,7 +102,7 @@ class CDCD{
       this->primerConjunto = 0;
     }
     ~CDCD(){
-      if(this->primerConjunto){
+      if(this->primerConjunto != 0){
         delete primerConjunto;
       }
     }
@@ -145,7 +151,8 @@ class CDCD{
     }
     ostream& imprimir(ostream& salida){
       salida << "CDCD:"<< endl;
-      if(this->primerConjunto){
+      if(this->primerConjunto != 0){
+        cout << "Va a imprimir el primer conj" << endl;
         this->primerConjunto->imprimir(salida);
       }
       return salida;

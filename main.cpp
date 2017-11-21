@@ -11,9 +11,9 @@ int main(int argc, char const *argv[]) {
   CDCD<char> cDcD;
 
 
-  cDcD.agregarConjunto(1, 'A');
+  cDcD.agregarConjunto(1,'A');
   cDcD.imprimir(cout);
-  cDcD.agregarConjunto(2, 'B');
+  cDcD.agregarConjunto(2,'B');
   cDcD.imprimir(cout);
   cDcD.unirConjuntos(1,2);
   cDcD.imprimir(cout);
