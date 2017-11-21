@@ -21,8 +21,10 @@ class Grafo {
             public:
                 int peso;
                 Caja* verticeA;
+                Caja* verticeB;
+
                 Arista* siguienteArista;
-                Arista(Caja*, int);
+                Arista(Caja*,Caja*, int);
                 ~Arista();
                 ostream& imprimirA(ostream&);
         };

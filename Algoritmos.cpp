@@ -92,9 +92,17 @@ using namespace std;
 			CdP<Grafo::Arista> cola;
 			int numAristas = 0;
 			// Primero encolamos en el vector heap todas las aristas, usando el peso como prioridad
+			while(){
 
-
+			}
 			// Luego metemos en Conjuntos de Conjuntos todos los vértices
+			Grafo::Vertice vertice = grafo->primerVertice();
+			int i = 1;
+			while(vertice!=0){
+				conjunto.agregarConjunto(i, vertice);
+				vertice = grafo->siguienteVertice(vertice);
+				++i;
+			}
 
 
 			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
@@ -128,21 +136,30 @@ using namespace std;
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
-			int numeroVertices;
-			int caminoMásCorto = 0;
-			int caminoMásCortoAct = 0;
+
+			Grafo::Vertice primerV = grafo->primerVertice();
+			diccionarioH.agregar(primerV);
+			problemaDelVendedorR(primerV);
 		}
 		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice){
-			while(!diccionario.pertenece(vertice)){
-				if(){ // Preguntamos por factibilidad
-					if(){//Preguntamos por condición de parada
-						if(caminoMásCortoAct < caminoMásCorto){
-							caminoMásCorto = caminoMásCortoAct;
+				verticeAdy = grafo->primerVerticeAdy(vertice);
+				while(verticeAdy != 0){
+					if(!diccionarioH.pertenece(verticeAdy)){ // Preguntamos por factibilidad
+
+						diccionarioH.agregar(verticeAdy);
+						caminoMásCortoAct += grafo->peso(vertice, verticeAdy);
+
+						if(){//Preguntamos por condición de parada
+							if(caminoMásCortoAct < caminoMásCorto){
+								caminoMásCorto = caminoMásCortoAct;
+							}
+						}else{
+							problemaDelVendedorR(grafo, grafo->primerVerticeAdy(verticeAdy));//Hacemos el llamado recursivo
 						}
-					}else{
-						problemaDelVendedorR(grafo, grafo->siguienteVerticeAdy(grafo));//Hacemos el llamado recursivo
+						diccionarioH.borrar(verticeAdy);
+						caminoMásCorto -= grafo->peso(vertice, verticeAdy);
+						verticeAdy = grafo->siguienteVerticeAdy(vertice, verticeAdy);
 					}
-					diccionario =
+
 				}
-			}
 		}
