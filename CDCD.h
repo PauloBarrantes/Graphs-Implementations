@@ -33,14 +33,13 @@ class CDCD{
         anterior = actual;
       }
       else{
-        actual = actual->siguiente;
-      }
-      while(actual != 0 && !encontro){
-        if(actual->siguiente == conj1){
-          encontro = true;
-          anterior = actual;
+        while(actual != 0 && !encontro){
+          if(actual->siguiente == conj1){
+            encontro = true;
+            anterior = actual;
+          }
+          actual = actual->siguiente;
         }
-        actual = actual->siguiente;
       }
       return anterior;
     }
@@ -148,7 +147,7 @@ class CDCD{
         actual = actual->siguienteElemento;
       }
       Conjunto* anterior = buscarAnterior(conjB);
-      if(anterior == this->primerConjunto){
+      if(conjB == this->primerConjunto){
         this->primerConjunto = conjB->siguiente;
       }
       else{

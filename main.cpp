@@ -15,7 +15,11 @@ int main(int argc, char const *argv[]) {
   cDcD.imprimir(cout);
   cDcD.agregarConjunto(2,'B');
   cDcD.imprimir(cout);
-  cDcD.unirConjuntos(1,2);
+  cDcD.agregarConjunto(5,'C');
+  cDcD.imprimir(cout);
+  cDcD.unirConjuntos(5,2);
+  cDcD.imprimir(cout);
+  cDcD.unirConjuntos(1,5);
   cDcD.imprimir(cout);
 
 
