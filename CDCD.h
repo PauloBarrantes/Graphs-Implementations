@@ -15,7 +15,7 @@ class CDCD{
       Conjunto* buscado = 0;
       Conjunto* actual = this->primerConjunto;
       bool encontro = false;
-      while(actual != 0){
+      while(actual != 0 && !encontro){
         if(actual->identificador == conjId){
           encontro = true;
           buscado = actual;
@@ -28,7 +28,14 @@ class CDCD{
       Conjunto* anterior = 0;
       Conjunto* actual = this->primerConjunto;
       bool encontro = false;
-      while(actual != 0){
+      if(actual == conj1){
+        encontro = true;
+        anterior = actual;
+      }
+      else{
+        actual = actual->siguiente;
+      }
+      while(actual != 0 && !encontro){
         if(actual->siguiente == conj1){
           encontro = true;
           anterior = actual;
@@ -52,10 +59,9 @@ class CDCD{
         }
       }
       ostream& imprimir(ostream& salida){
-        cout << this->elemento;
+        salida << this->elemento << ", ";
         //this->elemento->imprimir(salida);
-        salida<< ", ";
-        if(siguienteElemento != 0){
+        if(this->siguienteElemento != 0){
           this->siguienteElemento->imprimir(salida);
         }
         return salida;
@@ -84,12 +90,9 @@ class CDCD{
         this->primerElemento = nuevoElemento;
       }
       ostream& imprimir(ostream& salida){
-        salida << this->identificador;
-        if(this->primerElemento != 0){
-          salida<<" {";
-          this->primerElemento->imprimir(salida);
-          salida<<"}, ";
-        }
+        salida << this->identificador << " {";
+        this->primerElemento->imprimir(salida);
+        salida << "}" << endl;
         if(this->siguiente != 0){
           this->siguiente->imprimir(salida);
         }
@@ -140,21 +143,23 @@ class CDCD{
       Conjunto* conjA = buscarConjunto(conj1);
       Conjunto* conjB = buscarConjunto(conj2);
       CajitaElem* actual = conjB->primerElemento;
-      while(actual){
+      while(actual != 0){
         conjA->agregarElemento(actual->elemento);
         actual = actual->siguienteElemento;
       }
       Conjunto* anterior = buscarAnterior(conjB);
-      anterior->siguiente = conjB->siguiente;
+      if(anterior == this->primerConjunto){
+        this->primerConjunto = conjB->siguiente;
+      }
+      else{
+        anterior->siguiente = conjB->siguiente;
+      }
       conjB->siguiente = 0;
       delete conjB;
     }
     ostream& imprimir(ostream& salida){
-      salida << "CDCD:"<< endl;
-      if(this->primerConjunto != 0){
-        cout << "Va a imprimir el primer conj" << endl;
-        this->primerConjunto->imprimir(salida);
-      }
+      salida << "CDCD: " << endl;
+      this->primerConjunto->imprimir(salida);
       return salida;
     }
 };
