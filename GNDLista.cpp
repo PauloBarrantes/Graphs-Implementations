@@ -192,67 +192,30 @@ using namespace std;
         }
     }
     void Grafo::modificarEtiqueta(Grafo::Vertice vertice , char etiqueta) {
-        Grafo::Vertice v = primero;
-        int encontrado = 0;
-        while(v!= 0  && !encontrado){
-            if( v== vertice ){
-                encontrado = 1;
-            }else{
-                v = v->siguienteCaja;
-            }
-        }
-        if(v == 0){
-            std::cerr << "El vértice no está en el grafo" << '\n';
-        }else{
-            v->etiq = etiqueta;
-        }
+        vertice->etiq = etiqueta;
     }
     char Grafo::etiqueta(Grafo::Vertice vertice){
-        char etiqueta = -1 ;
-        Grafo::Vertice v = primero;
-        int encontrado = 0;
-        while(v!= 0  && !encontrado){
-            if( v== vertice ){
-                encontrado = 1;
-            }else{
-                v = v->siguienteCaja;
-            }
-        }
-
-        if(v == 0){
-            std::cerr << "El vértice no está en el grafo" << '\n';
-        }else{
-            etiqueta = v->etiq;
-        }
-        return etiqueta;
+        return vertice->etiqueta;
     }
     int Grafo::numVertices(){
         return numeroVertices;
     }
 
     int Grafo::numVerticesAdy(Grafo::Vertice vertice){
-        int numAdy = -1;
-        Grafo::Vertice v = primero;
+        return vertice->numVerticesAdy;
+    }
+    int Grafo::adyacentes(Grafo::Vertice vertice1 , Grafo::Vertice vertice2){
+        Arista* arista = vertice1->sublista;
         int encontrado = 0;
-        while(v!= 0  && !encontrado){
-            if( v== vertice ){
+        while(arista!=0  && !encontrado){
+            if(arista->verticeA == vertice2){
                 encontrado = 1;
             }else{
-                v = v->siguienteCaja;
+                arista = arista->siguienteArista;
             }
         }
 
-        if(v == 0){
-            std::cerr << "El vértice no está en el grafo" << '\n';
-        }else{
-            numAdy = v->numAdy;
-        }
-
-        return numAdy;
-    }
-    int Grafo::adyacentes(Grafo::Vertice vertice1 , Grafo::Vertice vertice2){
-        int booleano = 0;
-
+        return encontrado;
     }
 
     Grafo::Vertice Grafo::primerVertice(){
@@ -265,7 +228,22 @@ using namespace std;
         return (vertice->sublista)->verticeA;
     }
     Grafo::Vertice Grafo::siguienteVerticeAdy(Grafo::Vertice vertice1, Grafo::Vertice vertice2){
+        Arita* arista = vertice1->sublista;
+        int encontrado = 0;
+        while(arista!=0 && !encontrado){
+            if(arista->verticeA == vertice2){
+                encontrado=1;
+            }else{
+                arista = arista->siguienteArista;
+            }
+        }
+        if(encontrado == 0){
+            std::cerr << "No se encontraron más vértices adyacentes" << '\n';
+        }else{
+            arista->siguienteArista;
+        }
 
+        return arista->verticeA;
     }
     Grafo::Vertice Grafo::buscarVertice(char etiqueta){
         Grafo::Vertice v = primero;
