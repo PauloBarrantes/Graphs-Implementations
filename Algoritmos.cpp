@@ -69,20 +69,54 @@ using namespace std;
 		void Algoritmos::floyd(Grafo* grafo){
 			int numV = grafo->numeroVertices();
 			int distancias[numV][numV];
-			char caminos[numV][numV];
-			for(int i=0;i<numV;)
-			//rellenar con la informacion del grafo.
-			//Profundidad primero o recorrido mio?
-			// for(int k=0;k<numV; ++k){
-			// 	for(int i=0;i<numV; ++i){
-			// 		for(int j=0;j<numV; ++j){
-			// 			if(distancias[i][j] > distancias[i][k] + distancias[k][j]){
-			// 				distancias[i][j] = distancias[i][k] + distancias[k][j];
-			// 				camino[i][j] = camino[k][j];
-			// 			}
-			// 		}
-			// 	}
-			// }
+			int caminos[numV][numV];
+			Relaciones1_1<int,Grafo::Vertice> relaciones;
+			//Establecer relaciones
+			Grafo::Vertice actual = grafo->primerVertice();
+			for(int i=0; i<numV;++i){
+				relaciones->agregar(i,actual);
+				actual = grafo->steVertice(actual);
+			}
+			//llenar la matriz de distancias
+			for(int i=0;i<numV;++i){
+				for(int j=0;j<numV;++j){
+					if(i==j){
+						distancias[i][j] = 0;
+					}
+					else{
+						if(grafo->peso(relaciones->imagen(i),relaciones->imagen(j)) == 0){
+							distancias[i][j] = infty;
+						}
+						else{
+							distancias[i][j] = grafo->peso(relaciones->imagen(i),relaciones->imagen(j));
+						}
+				  }
+				}
+			}
+			//rellenar la matriz de caminos
+			for(int i=0;i<numV;++i){
+				for(int j=0;j<numV;++j){
+					if(i==j || grafo->peso(relaciones->imagen(i),relaciones->imagen(j)) == 0){
+						camino[i][j] = -1;
+					}
+					else{
+						if(grafo->existeArista(relaciones->imagen(i),relaciones->imagen(j))){
+							camino[i][j] = i;
+						}
+					}
+				}
+			}
+			//Algoritmo de Floyd n^3 iteraciones, buscando si existe un camino más corto via otros vértices.
+			for(int k=0;k<numV; ++k){
+				for(int i=0;i<numV; ++i){
+					for(int j=0;j<numV; ++j){
+						if(distancias[i][j] > distancias[i][k] + distancias[k][j]){
+							distancias[i][j] = distancias[i][k] + distancias[k][j];
+							camino[i][j] = camino[k][j];
+						}
+					}
+				}
+			}
 		}
 
 		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
