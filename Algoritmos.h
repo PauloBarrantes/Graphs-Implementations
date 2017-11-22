@@ -11,9 +11,14 @@ class Algoritmos{
 	private:
 		Grafo* grafo1;
 		Grafo* grafo2;
-		// Variables globales del problema del vendedor
 
-		int numeroVertices =0;
+
+		// Variables globales del problema del vendedor
+		int nUmeroSolFactibles;
+		int numeroSolOptimas;
+		int numVerticeVisitado =0;
+		Grafo::Vertice * soluciónActual;
+		Grafo::Vertice * soluciónGanadora;
 		int caminoMásCorto = 0;
 		int caminoMásCortoAct = 0;
 		DiccionarioLSE<Grafo::Vertice> diccionarioH;

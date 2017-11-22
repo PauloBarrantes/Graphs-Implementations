@@ -7,6 +7,7 @@ class Grafo {
     class Arista;
     private:
         int numeroVertices;
+        int numeroAristas;
         class Caja{
             public:
                 char etiq;
@@ -46,13 +47,14 @@ class Grafo {
         void modificarEtiqueta(Vertice, char);
         char etiqueta(Vertice);
         int numVertices();
+        int numAristas();
         int numVerticesAdy(Vertice);
         int adyacentes(Vertice, Vertice);
         ostream& imprimir(ostream&);
         Vertice primerVertice();
         Vertice siguienteVertice(Vertice);
         Vertice primerVerticeAdy(Vertice);
-        Vertice siguienteVerticeAdy(Vertice);
+        Vertice siguienteVerticeAdy(Vertice, Vertice);
         Vertice buscarVertice(char);
 
 };
