@@ -68,8 +68,9 @@ using namespace std;
 
 		void Algoritmos::floyd(Grafo* grafo){
 			int numV = grafo->numeroVertices();
-			//crear int[][] distancias
-			//crear char[][] camino
+			int distancias[numV][numV];
+			char caminos[numV][numV];
+			for(int i=0;i<numV;)
 			//rellenar con la informacion del grafo.
 			//Profundidad primero o recorrido mio?
 			// for(int k=0;k<numV; ++k){
