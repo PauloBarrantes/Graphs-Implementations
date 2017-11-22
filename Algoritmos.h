@@ -23,6 +23,7 @@ class Algoritmos{
 		~Algoritmos();
 		int iguales(Grafo*, Grafo*);
 		Grafo*  copiar(Grafo*,Grafo*);
+		void floyd(Grafo*);
 		void kruskal(Grafo*);
 		void prim (Grafo*);
 		void Algoritmos::dijkstra(Grafo*, Grafo::Vertice);

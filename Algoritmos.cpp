@@ -65,6 +65,25 @@ using namespace std;
 		Grafo* Algoritmos::copiar(Grafo* g1,Grafo*g2){
 
 		}
+
+		void Algoritmos::floyd(Grafo* grafo){
+			int numV = grafo->numeroVertices();
+			//crear int[][] distancias
+			//crear char[][] camino
+			//rellenar con la informacion del grafo.
+			//Profundidad primero o recorrido mio?
+			// for(int k=0;k<numV; ++k){
+			// 	for(int i=0;i<numV; ++i){
+			// 		for(int j=0;j<numV; ++j){
+			// 			if(distancias[i][j] > distancias[i][k] + distancias[k][j]){
+			// 				distancias[i][j] = distancias[i][k] + distancias[k][j];
+			// 				camino[i][j] = camino[k][j];
+			// 			}
+			// 		}
+			// 	}
+			// }
+		}
+
 		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
 			Relaciones1_1<Grafo::Vertice, int > R11;
 			Diccionarios<Grafo::Vertice> diccionario;
