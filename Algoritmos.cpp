@@ -156,9 +156,13 @@ using namespace std;
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
-
+			numeroSolFactibles = 0;
+			numeroSolOptimas = 0;
 			Grafo::Vertice primerV = grafo->primerVertice();
+			soluciónActual = new Grafo::Vertice[grafo->numVertices];
+			soluciónGanadora = new Grafo::Vertice[grafo->numVertices];
 			diccionarioH.agregar(primerV);
+
 			problemaDelVendedorR(primerV);
 		}
 		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice){
