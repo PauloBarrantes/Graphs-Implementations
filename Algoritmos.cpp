@@ -154,8 +154,8 @@ using namespace std;
 		 	Relaciones1_1<int, Grafo::Vertice> R11;
 		 	DiccionarioLSE<Grafo::Vertice> diccionario;
 			int numV = grafo->numeroVertices();
+			Grafo::Vertice destinos [numV];
 		 	int costos [numV];
-			// 	Grafo::Vertice destinos [grafo->numeroVertices()];
 			Grafo::Vertice actual = grafo->primerVertice();
 			for(int i=0; i<numV;++i){
 				relaciones.agregar(i,actual);
@@ -168,30 +168,28 @@ using namespace std;
 		  }
 			//Condición de Dijkstra.
 			int costoPivote;
-			int indicePivote
+			int indicePivote;
 			while(diccionario.numeroElementos() != G.numeroVertices();){
 				  //Escogencia del pivote
 					costoPivote = infty
 					for(int i=0;i<numV;++i){
 						if(!diccionario.pertenece(R11->imagen(i))){
-							if(costos[pivote] > costos[i]){
-								diccionario.agregar(R11->imagen(i));
+							if(costoPivote > costos[i]){
 								costoPivote = costo[i];
 								indicePivote = i;
 							}
 						}
 					}
-
-					for(int i=0;i<numV;++i){
-						if(!diccionario.pertenece(R11->imagen(i))){
-							if(costoPivote +  > costos[i]){
-								diccionario.agregar(R11->imagen(i));
-								costoPivote = costo[i];
-								indicePivote = i;
-							}
+				diccionario.agregar(R11->imagen(indiceMenor));
+				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.imagen(indiceMenor));
+				while(adyacente!=0){
+				 	if(!diccionario.pertenece(adyacente)){
+						if(costos[indiceMenor] + grafo->peso(R11.imagen(indiceMenor), adyacente) < costos[R11.preimagen(adyacente)])
+		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indiceMenor), adyacente);
+				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indiceMenor);
 						}
 					}
-			}
+				}
 	    //
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
@@ -272,7 +270,7 @@ using namespace std;
 				diccionario.agregar(R11.preimagen(indiceMenor));
 				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.preimagen(indiceMenor));
 				while(adyacente!=0){
-					if(!diccionacio.pertenece(adyacente) && grafo->peso(R11.preimagen(indiceMenor), adyacente)<= costos[R11.imagen(adyacente)]){
+					if(!diccionario.pertenece(adyacente) && grafo->peso(R11.preimagen(indiceMenor), adyacente)<= costos[R11.imagen(adyacente)]){
 						 costos[R11.imagen(adyacente)] = grafo->peso(R11.preimagen(indiceMenor), adyacente);
 						 verticesConectados[adyacente] = R11.preimagen(indiceMenor);
 						 costoTotal +=  grafo->peso(R11.preimagen(indiceMenor), adyacente);
