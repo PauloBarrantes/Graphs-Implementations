@@ -4,9 +4,11 @@ using namespace std;
 
 
 Menu::Menu(){
-    controlador();
+    algoritmo = new Algoritmos();
     grafo1 = 0;
     grafo2 = 0;
+    controlador();
+
 }
 Menu::~Menu(){
     delete grafo1;
@@ -430,13 +432,10 @@ void Menu::problemaDelVendedor (){
         grafo1->agrVertice('a');
         grafo1->agrVertice('b');
         grafo1->agrVertice('c');
-        grafo1->agrVertice('d');
         agrArista();
         agrArista();
         agrArista();
-        agrArista();
-        agrArista();
-        agrArista();
+
         cout <<"Llega Aca" <<endl;
         algoritmo->problemaDelVendedor(grafo1);
 

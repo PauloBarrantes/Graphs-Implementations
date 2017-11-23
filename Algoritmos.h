@@ -4,23 +4,20 @@
 #include "DiccionarioLSE.h"
 #include "CPArbol.h"
 #include "Relaciones1_1.h"
-
-//#include "GNDMatriz.h"
-#include "GNDLista.h"
+#include "GNDMatriz.h"
+//#include "GNDLista.h"
 class Algoritmos{
 	private:
 		Grafo* grafo1;
 		Grafo* grafo2;
 
 
-		// Variables globales del problema del vendedor
-		int numeroSolFactibles;
-		int numeroSolOptimas;
-		int numVerticeVisitado;
+		int costoActual;
+		int costoGlobal;
+		int numVertice;
+
 		Grafo::Vertice * solucionActual;
 		Grafo::Vertice * solucionGanadora;
-		int caminoMasCorto;
-		int caminoMasCortoAct;
 		DiccionarioLSE<Grafo::Vertice> diccionarioH;
 
 	public:
@@ -33,7 +30,7 @@ class Algoritmos{
 		void prim (Grafo*);
 		void dijkstra(Grafo*, Grafo::Vertice);
 		void problemaDelVendedor(Grafo*);
-		void problemaDelVendedorR(Grafo*, Grafo::Vertice, int);
+		void problemaDelVendedorR(Grafo*, Grafo::Vertice,int);
 
 };
 

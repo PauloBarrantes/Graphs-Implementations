@@ -4,7 +4,8 @@
 using namespace std;
 
 		Algoritmos::Algoritmos(){
-
+			costoActual = 0;
+			costoGlobal =0;
 		}
 
 		Algoritmos::~Algoritmos(){
@@ -219,45 +220,60 @@ using namespace std;
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
-		 	this->numeroSolFactibles = 0;
-		 	this->numeroSolOptimas = 0;
-			caminoMasCorto = 0;
-			caminoMasCortoAct = 0;
+			cout << "1" <<endl;
+			costoActual = 0;
+			costoGlobal = infty;
+			cout << "2" <<endl;
 		 	Grafo::Vertice primerV = grafo->primerVertice();
  			solucionActual = new Grafo::Vertice[grafo->numVertices()];
 		 	solucionGanadora = new Grafo::Vertice[grafo->numVertices()];
+			cout << "3" <<endl;
 			solucionActual[0] = primerV;
+			cout << "4" <<endl;
 		 	diccionarioH.agregar(primerV);
+			cout << "5" <<endl;
+		 	problemaDelVendedorR(grafo, primerV,1);
 
-		 	problemaDelVendedorR(grafo, primerV, 1);
-
-			cout <<"CaminoMásCorto: " <<caminoMasCorto<<endl;
+			cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
 			for(int i = 0; i < grafo->numVertices();i++){
 				cout <<"Vértice -> " << grafo->etiqueta(solucionGanadora[i])<< "->";
 			}
 		}
 
-		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice, int numVerticesAdy){
-		 		Grafo::Vertice verticeAdy = grafo->primerVerticeAdy(vertice);
+		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice, int numVertice){
+
+				Grafo::Vertice verticeAdy = grafo->primerVerticeAdy(vertice);
+
 		 		while(verticeAdy != 0){
 		 			if(!diccionarioH.pertenece(verticeAdy)){ // Preguntamos por factibilidad
+						cout << "Vertice:" << grafo->etiqueta(vertice) <<endl;
+						cout << "adyacente: " << grafo->etiqueta(verticeAdy) <<endl;
+						diccionarioH.agregar(verticeAdy);
+		 				costoActual += grafo->peso(vertice, verticeAdy);
+						cout <<"Costo Actual" <<costoActual<<endl;
+						solucionActual[numVertice] = verticeAdy;
 
-		 				diccionarioH.agregar(verticeAdy);
-		 				caminoMasCortoAct += grafo->peso(vertice, verticeAdy);
-						solucionActual[numVerticeVisitado] = verticeAdy;
-		 				if(numVerticesAdy == grafo->numVertices()){//Preguntamos por condición de parada
-		 					if(caminoMasCortoAct < caminoMasCorto){
-		 						caminoMasCorto = caminoMasCortoAct;
-								for(int i = 1; i < grafo->numVertices();++i){
-									solucionGanadora[i] = solucionActual[i];
-								}
-		 					}
+		 				if(numVertice == grafo->numVertices()-1){//Preguntamos por condición de parada
+							cout << "7.4" <<endl;
+								if(costoActual < costoGlobal && grafo->adyacentes(solucionActual[0], verticeAdy)){
+									cout <<"Costo Actual" <<costoActual<<endl;
+									cout <<"Costo Global" <<costoGlobal<<endl;
+
+			 						costoGlobal = costoActual;
+									costoGlobal += grafo->peso(solucionActual[0], verticeAdy);
+									for(int i = 1; i < grafo->numVertices();++i){
+										solucionGanadora[i] = solucionActual[i];
+									}
+			 					}
+
+
 		 				}else{
-		 					problemaDelVendedorR(grafo, verticeAdy, numVerticesAdy+1);//Hacemos el llamado recursivo
+							problemaDelVendedorR(grafo, verticeAdy, numVertice+1);//Hacemos el llamado recursivo
 		 				}
+
 		 				diccionarioH.borrar(verticeAdy);
-		 				caminoMasCortoAct -= grafo->peso(vertice, verticeAdy);
-		 				verticeAdy = grafo->siguienteVerticeAdy(vertice, verticeAdy);
+		 				costoActual -= grafo->peso(vertice, verticeAdy);
 		 			}
+			verticeAdy = grafo->siguienteVerticeAdy(vertice, verticeAdy);
 		 }
 	 }

@@ -1,6 +1,6 @@
 #include <iostream>
 //#include "DiccionarioLSE.h"
-#include "GNDLista.h"
+#include "GNDMatriz.h"
 #include "Menu.h"
 //#include "CDCD.h"
 using namespace std;
