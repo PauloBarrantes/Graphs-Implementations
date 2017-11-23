@@ -1,11 +1,11 @@
 #include "Algoritmos.h"
 #include <iostream>
-#define infty 10000000
+#define infty 100000000
 using namespace std;
 
 		Algoritmos::Algoritmos(){
 			costoActual = 0;
-			costoGlobal =0;
+			costoGlobal = 0;
 		}
 
 		Algoritmos::~Algoritmos(){
@@ -96,6 +96,7 @@ using namespace std;
 				}
 				actual = g1->siguienteVertice(actual);
 			}
+			return g2;
 		}
 
 		void Algoritmos::floyd(Grafo* grafo){
@@ -150,25 +151,48 @@ using namespace std;
 		}
 
 		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
-		// 	Relaciones1_1<Grafo::Vertice, int > R11;
-		// 	Diccionarios<Grafo::Vertice> diccionario;
-		// 	int distancias [grafo->numeroVertices()];
-		// 	Grafo::Vertice destinos [grafo->numeroVertices()];
-		// 	Grafo::Vertice v = G->primerVertice();
-		// 	int indice = 1;
-		// 	while(v!= 0){
-		// 		R11.agregar(v, indice);
-		// 		distancias[indice] = infty;
-		// 		destinos[indice] = vertice
-		// 		v = Grafo->siguienteVertice(v);
-		// 		indice++;
-		// 	}
-		// 	distancias[R11.imagen(vertice)] = 0;
-    //
-		// 	while(diccionario.numeroElementos() != G.numeroVertices();){
-		// 		int menor = 1;
-		// 	}
-    //
+		 	Relaciones1_1<int, Grafo::Vertice> R11;
+		 	DiccionarioLSE<Grafo::Vertice> diccionario;
+			int numV = grafo->numeroVertices();
+		 	int costos [numV];
+			// 	Grafo::Vertice destinos [grafo->numeroVertices()];
+			Grafo::Vertice actual = grafo->primerVertice();
+			for(int i=0; i<numV;++i){
+				relaciones.agregar(i,actual);
+				actual = grafo->siguienteVertice(actual);
+			}
+			//inicializamos distancias en infinito, primer vertice en 0.
+			costos[0] = 0;
+			for(int i=1; i<numV;++i){
+			 costos[i] = infty;
+		  }
+			//Condición de Dijkstra.
+			int costoPivote;
+			int indicePivote
+			while(diccionario.numeroElementos() != G.numeroVertices();){
+				  //Escogencia del pivote
+					costoPivote = infty
+					for(int i=0;i<numV;++i){
+						if(!diccionario.pertenece(R11->imagen(i))){
+							if(costos[pivote] > costos[i]){
+								diccionario.agregar(R11->imagen(i));
+								costoPivote = costo[i];
+								indicePivote = i;
+							}
+						}
+					}
+
+					for(int i=0;i<numV;++i){
+						if(!diccionario.pertenece(R11->imagen(i))){
+							if(costoPivote +  > costos[i]){
+								diccionario.agregar(R11->imagen(i));
+								costoPivote = costo[i];
+								indicePivote = i;
+							}
+						}
+					}
+			}
+	    //
 		}
 		// void Algoritmos::kruskal(Grafo* grafo){
 		// 	DiccionarioLSE<Grafo::Vertice>diccionario;
