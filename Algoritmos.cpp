@@ -170,68 +170,104 @@ using namespace std;
 		// 	}
     //
 		}
-		// void Algoritmos::kruskal(Grafo* grafo){
-		// 	DiccionarioLSE<Grafo::Vertice>diccionario;
-		// 	CdCd<Grafo::Vertice> conjunto;
-		// 	CdP<Grafo::Arista> cola;
-		// 	int numAristas = 0;
-		// 	// Primero encolamos en el vector heap todas las aristas, usando el peso como prioridad
-		// 	while(){
-    //
-		// 	}
-		// 	// Luego metemos en Conjuntos de Conjuntos todos los vértices
-		// 	Grafo::Vertice vertice = grafo->primerVertice();
-		// 	int i = 1;
-		// 	while(vertice!=0){
-		// 		conjunto.agregarConjunto(i, vertice);
-		// 		vertice = grafo->siguienteVertice(vertice);
-		// 		++i;
-		// 	}
-    //
-    //
-		// 	// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
-    //
-		// 	// La condición de parada es que numAristas sea numVertices-1
-		//}
+		void Algoritmos::kruskal(Grafo* grafo){
+			DiccionarioLSE<Grafo::Vertice>diccionario;
+			CdCd<Grafo::Vertice> conjunto;
+			CdP<Par> cola;
+			int numAristas = 0;
+			// Primero encolamos en el vector heap todas las aristas, usando el peso como prioridad
+			Grafo::Vertice vertice = grafo->primerVertice();
+			Grafo::Vertice ady = grafo->primerVerticeAdy(vertice);
+			int i = 1;
+			while(vertice != 0){
+				conjunto.agregarConjunto(i, vertice);
+				while(ady != 0){
+					Par parsito =  Par(vertice, ady);
+					if(!cola.pertenece(parsito)){ //Preguntar si la arista ya fue guardada
+						cola.agregar(parsito,grafo->peso(vertice, ady));
+					}
+					ady = grafo->siguienteVerticeAdy(vertice, ady);
+				}
+
+				vertice = grafo->siguienteVertice(vertice);
+				++i;
+
+			}
+			// Luego metemos en Conjuntos de Conjuntos todos los vértices
+			int numeroA = 0;
+			while(numeroA != grafos->numVertices()-1){
+				Par par = cola.sacar();
+				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
+					cout << grafos->etiqueta(par.v1) << "<---" << grafos->pesos(par.v1,par.v2) << "--->" << grafos->etiqueta(par.v2)<<endl;
+					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
+				}else{
+					std::cerr << "Esa Arista ya esta el arbol de minimo costo" << '\n';
+				}
+
+			}
+
+			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
+
+			// La condición de parada es que numAristas sea numVertices-1
+		}
 
 		void Algoritmos::prim (Grafo* grafo){
-		// 	Relaciones1_1<Grafo::Vertice, int > R11;
-		// 	DiccionarioLSE<Grafo::Vertice> diccionario;
-		// 	int costos [grafo->numeroVertices()-1];
-		// 	Grafo::Vertice verticesConectados [grafo->numeroVertices()-1];
-		// 	Grafo::Vertice v = G->primerVertice();
-		// 	// Llenamos los arreglos y creamos las relaciones 1 a 1
-		// 	for(int i = 0; grafo->numeroVertices()-1; ++i){
-		// 		R11.agregar(v, i);
-		// 		costos[i] = infty;
-		// 		verticesConectados[i] =	v;
-		// 		v = grafo->siguienteVertice(v);
-		// 	}
-		// 	//Marcamos los adyacentes a A
-		// 	v= G->primerVertice();
-    //
-		// 	while(diccionario.numeroElementos() != G.numeroVertices()-1){
-    //
-    //
-    //
-		// 	}
-    //
-    //
+			int costoTotal =0;
+			Relaciones1_1<Grafo::Vertice, int > R11;
+			DiccionarioLSE<Grafo::Vertice> diccionario;
+			int costos [grafo->numeroVertices()-1];
+			Grafo::Vertice verticesConectados [grafo->numeroVertices()];
+			Grafo::Vertice v = G->primerVertice();
+			// Llenamos los arreglos y creamos las relaciones 1 a 1
+			for(int i = 0; i < grafo->numeroVertices(); ++i){
+				R11.agregar(v, i);
+				if(grafo->adyacentes(verticesConectados[0], v)){
+					costos[i] = grafo->peso(verticesConectados[0], v);
+				}else{
+					costos[i] = infty;
+				}
+				verticesConectados[i] =	v;
+				v = grafo->siguienteVertice(v);
+			}
+			//Marcamos los adyacentes a A
+			costos[0] = 0;
+			v= G->primerVertice();
+			diccionario.agregar(v1);
+			int encontradoMenor = infty;
+			int indiceMenor = 0;
+			while(diccionario.numeroElementos() != G.numeroVertices()){
+				encontradoMenor = infty;
+
+				//Busco el de menor Costo
+				for (int i =1; i < grafo->numeroVertices(); i++){
+					if(encontradoMenor > costos[i] && !diccionario.pertenece(R11.preimagen(i))){
+						encontradoMenor = costos[i];
+						indiceMenor = i;
+					}
+				}
+				diccionario.agregar(R11.preimagen(indiceMenor));
+				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.preimagen(indiceMenor));
+				while(adyacente!=0){
+					if(!diccionacio.pertenece(adyacente) && grafo->peso(R11.preimagen(indiceMenor), adyacente)<= costos[R11.imagen(adyacente)]){
+						 costos[R11.imagen(adyacente)] = grafo->peso(R11.preimagen(indiceMenor), adyacente);
+						 verticesConectados[adyacente] = R11.preimagen(indiceMenor);
+						 costoTotal +=  grafo->peso(R11.preimagen(indiceMenor), adyacente);
+					}
+				}
+
+			}
+
+
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
-			cout << "1" <<endl;
 			costoActual = 0;
 			costoGlobal = infty;
-			cout << "2" <<endl;
 		 	Grafo::Vertice primerV = grafo->primerVertice();
  			solucionActual = new Grafo::Vertice[grafo->numVertices()];
 		 	solucionGanadora = new Grafo::Vertice[grafo->numVertices()];
-			cout << "3" <<endl;
 			solucionActual[0] = primerV;
-			cout << "4" <<endl;
 		 	diccionarioH.agregar(primerV);
-			cout << "5" <<endl;
 		 	problemaDelVendedorR(grafo, primerV,1);
 
 			cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
@@ -246,19 +282,12 @@ using namespace std;
 
 		 		while(verticeAdy != 0){
 		 			if(!diccionarioH.pertenece(verticeAdy)){ // Preguntamos por factibilidad
-						cout << "Vertice:" << grafo->etiqueta(vertice) <<endl;
-						cout << "adyacente: " << grafo->etiqueta(verticeAdy) <<endl;
 						diccionarioH.agregar(verticeAdy);
 		 				costoActual += grafo->peso(vertice, verticeAdy);
-						cout <<"Costo Actual" <<costoActual<<endl;
 						solucionActual[numVertice] = verticeAdy;
 
 		 				if(numVertice == grafo->numVertices()-1){//Preguntamos por condición de parada
-							cout << "7.4" <<endl;
 								if(costoActual < costoGlobal && grafo->adyacentes(solucionActual[0], verticeAdy)){
-									cout <<"Costo Actual" <<costoActual<<endl;
-									cout <<"Costo Global" <<costoGlobal<<endl;
-
 			 						costoGlobal = costoActual;
 									costoGlobal += grafo->peso(solucionActual[0], verticeAdy);
 									for(int i = 1; i < grafo->numVertices();++i){
