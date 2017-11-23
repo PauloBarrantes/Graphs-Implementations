@@ -6,7 +6,20 @@
 #include "Relaciones1_1.h"
 #include "GNDMatriz.h"
 //#include "GNDLista.h"
+struct tripleta
+{
+	Vertice v1;
+	Vertice v2;
+	int peso;
+	par(Grafo::Vertice v1, Grafo::Vertice v2){
+		this->v1 = v1;
+		this->v2 = v2;
+	}
+
+}
+
 class Algoritmos{
+
 	private:
 		Grafo* grafo1;
 		Grafo* grafo2;
