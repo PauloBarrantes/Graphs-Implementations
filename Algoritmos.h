@@ -16,11 +16,11 @@ class Algoritmos{
 		// Variables globales del problema del vendedor
 		int nUmeroSolFactibles;
 		int numeroSolOptimas;
-		int numVerticeVisitado =0;
+		int numVerticeVisitado;
 		Grafo::Vertice * soluciónActual;
 		Grafo::Vertice * soluciónGanadora;
-		int caminoMásCorto = 0;
-		int caminoMásCortoAct = 0;
+		int caminoMásCorto;
+		int caminoMásCortoAct;
 		DiccionarioLSE<Grafo::Vertice> diccionarioH;
 
 	public:
@@ -31,7 +31,7 @@ class Algoritmos{
 		void floyd(Grafo*);
 		void kruskal(Grafo*);
 		void prim (Grafo*);
-		void Algoritmos::dijkstra(Grafo*, Grafo::Vertice);
+		void dijkstra(Grafo*, Grafo::Vertice);
 		void problemaDelVendedor(Grafo*);
 };
 
