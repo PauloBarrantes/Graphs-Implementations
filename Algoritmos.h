@@ -5,8 +5,8 @@
 #include "CPArbol.h"
 #include "Relaciones1_1.h"
 
-#include "GNDMatriz.h"
-//#include "GNDLista.h"
+//#include "GNDMatriz.h"
+#include "GNDLista.h"
 class Algoritmos{
 	private:
 		Grafo* grafo1;
@@ -14,7 +14,7 @@ class Algoritmos{
 
 
 		// Variables globales del problema del vendedor
-		int nUmeroSolFactibles;
+		int numeroSolFactibles;
 		int numeroSolOptimas;
 		int numVerticeVisitado;
 		Grafo::Vertice * solucionActual;
@@ -33,6 +33,8 @@ class Algoritmos{
 		void prim (Grafo*);
 		void dijkstra(Grafo*, Grafo::Vertice);
 		void problemaDelVendedor(Grafo*);
+		void problemaDelVendedorR(Grafo*, Grafo::Vertice, int);
+
 };
 
 #endif

@@ -96,26 +96,26 @@ using namespace std;
         return peso;
     }
     void Grafo::agrArista(Grafo::Vertice ver1,Grafo::Vertice ver2,int peso){
-        Grafo::Arista* arista1 = new Arista(ver1,ver2, peso);
-        Grafo::Arista* arista2 = new Arista(ver2,ver1, peso);
+            Grafo::Arista* arista1 = new Arista(ver1,ver2, peso);
+            Grafo::Arista* arista2 = new Arista(ver2,ver1, peso);
 
-        if(ver1 == 0){
-            ver1->sublista = arista2;
-        }else{
-            arista2->siguienteArista = ver1->sublista;
-            ver1->sublista = arista2;
-        }
+            if(ver1 == 0){
+                ver1->sublista = arista2;
+            }else{
+                arista2->siguienteArista = ver1->sublista;
+                ver1->sublista = arista2;
+            }
 
-        if(ver2 == 0){
-            ver2->sublista = arista1;
-        }else{
-            arista1->siguienteArista = ver2->sublista;
-            ver2->sublista = arista1;
-        }
-        (ver1->numAdy)++;
-        (ver2->numAdy)++;
-        numeroAristas++;
-
+            if(ver2 == 0){
+                ver2->sublista = arista1;
+            }else{
+                arista1->siguienteArista = ver2->sublista;
+                ver2->sublista = arista1;
+            }
+            (ver1->numAdy)++;
+            (ver2->numAdy)++;
+            numeroAristas++;
+        
     }
     void Grafo::modificarPeso(Grafo::Vertice ver1,Grafo::Vertice ver2, int peso){
         Arista* arista = ver1->sublista;
@@ -160,46 +160,48 @@ using namespace std;
         --numeroVertices;
     }
     void Grafo::elimArista(Grafo::Vertice ver1, Grafo::Vertice ver2){
-        Grafo::Arista* arista1 = ver1->sublista;
-        if(arista1->verticeA == ver2){
-            ver1->sublista = arista1->siguienteArista;
-            arista1->siguienteArista = 0;
-            delete arista1;
-        }else{
-            int encontrado = 0;
-            while(arista1->siguienteArista != 0 && !encontrado){
+            Grafo::Arista* arista1 = ver1->sublista;
+            if(arista1->verticeA == ver2){
+                ver1->sublista = arista1->siguienteArista;
+                arista1->siguienteArista = 0;
+                delete arista1;
+            }else{
+                int encontrado = 0;
+                while(arista1->siguienteArista != 0 && !encontrado){
 
-                if((arista1->siguienteArista)->verticeA == ver2){
-                    arista1->siguienteArista = (arista1->siguienteArista)->siguienteArista;
-                    (arista1->siguienteArista)->siguienteArista = 0;
-                    encontrado =1;
-                    delete arista1;
-                }else{
-                    arista1 = arista1->siguienteArista;
+                    if((arista1->siguienteArista)->verticeA == ver2){
+                        arista1->siguienteArista = (arista1->siguienteArista)->siguienteArista;
+                        (arista1->siguienteArista)->siguienteArista = 0;
+                        encontrado =1;
+                        delete arista1;
+                    }else{
+                        arista1 = arista1->siguienteArista;
+                    }
                 }
+
             }
 
-        }
+            Grafo::Arista* arista2 = ver2->sublista;
+            if(arista2->verticeA == ver1){
+                ver2->sublista = arista2->siguienteArista;
+                arista2->siguienteArista = 0;
+                delete arista2;
+            }else{
+                int encontrado = 0;
+                while(arista2->siguienteArista != 0 && !encontrado){
 
-        Grafo::Arista* arista2 = ver2->sublista;
-        if(arista2->verticeA == ver1){
-            ver2->sublista = arista2->siguienteArista;
-            arista2->siguienteArista = 0;
-            delete arista2;
-        }else{
-            int encontrado = 0;
-            while(arista2->siguienteArista != 0 && !encontrado){
-
-                if((arista2->siguienteArista)->verticeA == ver1){
-                    arista2->siguienteArista = (arista2->siguienteArista)->siguienteArista;
-                    (arista2->siguienteArista)->siguienteArista = 0;
-                    encontrado =1;
-                    delete arista2;
-                }else{
-                    arista2 = arista2->siguienteArista;
+                    if((arista2->siguienteArista)->verticeA == ver1){
+                        arista2->siguienteArista = (arista2->siguienteArista)->siguienteArista;
+                        (arista2->siguienteArista)->siguienteArista = 0;
+                        encontrado =1;
+                        delete arista2;
+                    }else{
+                        arista2 = arista2->siguienteArista;
+                    }
                 }
             }
-        }
+        (ver1->numAdy)--;
+        (ver2->numAdy)--;
         --numeroAristas;
     }
     void Grafo::modificarEtiqueta(Grafo::Vertice vertice , char etiqueta) {

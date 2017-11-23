@@ -1,6 +1,6 @@
 #include "Algoritmos.h"
 #include <iostream>
-#define infty 10000000000000
+#define infty 10000000
 using namespace std;
 
 		Algoritmos::Algoritmos(){
@@ -219,33 +219,45 @@ using namespace std;
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
-		// 	numeroSolFactibles = 0;
-		// 	numeroSolOptimas = 0;
-		// 	Grafo::Vertice primerV = grafo->primerVertice();
-		// 	soluciónActual = new Grafo::Vertice[grafo->numVertices];
-		// 	soluciónGanadora = new Grafo::Vertice[grafo->numVertices];
-		// 	diccionarioH.agregar(primerV);
-    //
-		// 	problemaDelVendedorR(primerV);
+		 	this->numeroSolFactibles = 0;
+		 	this->numeroSolOptimas = 0;
+			caminoMasCorto = 0;
+			caminoMasCortoAct = 0;
+		 	Grafo::Vertice primerV = grafo->primerVertice();
+ 			solucionActual = new Grafo::Vertice[grafo->numVertices()];
+		 	solucionGanadora = new Grafo::Vertice[grafo->numVertices()];
+			solucionActual[0] = primerV;
+		 	diccionarioH.agregar(primerV);
+
+		 	problemaDelVendedorR(grafo, primerV, 1);
+
+			cout <<"CaminoMásCorto: " <<caminoMasCorto<<endl;
+			for(int i = 0; i < grafo->numVertices();i++){
+				cout <<"Vértice -> " << grafo->etiqueta(solucionGanadora[i])<< "->";
+			}
 		}
-		// void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice){
-		// 		verticeAdy = grafo->primerVerticeAdy(vertice);
-		// 		while(verticeAdy != 0){
-		// 			if(!diccionarioH.pertenece(verticeAdy)){ // Preguntamos por factibilidad
-    //
-		// 				diccionarioH.agregar(verticeAdy);
-		// 				caminoMásCortoAct += grafo->peso(vertice, verticeAdy);
-    //
-		// 				if(){//Preguntamos por condición de parada
-		// 					if(caminoMásCortoAct < caminoMásCorto){
-		// 						caminoMásCorto = caminoMásCortoAct;
-		// 					}
-		// 				}else{
-		// 					problemaDelVendedorR(grafo, grafo->primerVerticeAdy(verticeAdy));//Hacemos el llamado recursivo
-		// 				}
-		// 				diccionarioH.borrar(verticeAdy);
-		// 				caminoMásCorto -= grafo->peso(vertice, verticeAdy);
-		// 				verticeAdy = grafo->siguienteVerticeAdy(vertice, verticeAdy);
-		// 			}
-    //
-		// }
+
+		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice, int numVerticesAdy){
+		 		Grafo::Vertice verticeAdy = grafo->primerVerticeAdy(vertice);
+		 		while(verticeAdy != 0){
+		 			if(!diccionarioH.pertenece(verticeAdy)){ // Preguntamos por factibilidad
+
+		 				diccionarioH.agregar(verticeAdy);
+		 				caminoMasCortoAct += grafo->peso(vertice, verticeAdy);
+						solucionActual[numVerticeVisitado] = verticeAdy;
+		 				if(numVerticesAdy == grafo->numVertices()){//Preguntamos por condición de parada
+		 					if(caminoMasCortoAct < caminoMasCorto){
+		 						caminoMasCorto = caminoMasCortoAct;
+								for(int i = 1; i < grafo->numVertices();++i){
+									solucionGanadora[i] = solucionActual[i];
+								}
+		 					}
+		 				}else{
+		 					problemaDelVendedorR(grafo, verticeAdy, numVerticesAdy+1);//Hacemos el llamado recursivo
+		 				}
+		 				diccionarioH.borrar(verticeAdy);
+		 				caminoMasCortoAct -= grafo->peso(vertice, verticeAdy);
+		 				verticeAdy = grafo->siguienteVerticeAdy(vertice, verticeAdy);
+		 			}
+		 }
+	 }

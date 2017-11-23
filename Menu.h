@@ -13,10 +13,9 @@ class Menu {
         ~Menu();
         void controlador();
         void obGrafos();
-        void algoritmosGrafos();
+
         void InstruccionesAlgoritmos();
         void InstruccionesOB();
-        void algoritmosGrafos();
         void algoritmosGrafos();
         //Operadores Básicos
         void Salir();
@@ -31,7 +30,6 @@ class Menu {
         void elimVertice();
         void elimArista();
         void modificarEtiqueta();
-        void etiqueta();
         void numVertices();
         void numVerticesAdy();
         void adyacentes();

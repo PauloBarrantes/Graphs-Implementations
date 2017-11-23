@@ -7,6 +7,7 @@ using namespace std;
 
 int main(int argc, char const *argv[]) {
 
+    Menu menucito;
   /*
   cDcD.agregarConjunto(1,'A');
   cDcD.imprimir(cout);
@@ -33,7 +34,7 @@ int main(int argc, char const *argv[]) {
      grafito->agrArista(v3, v4, 30);
      grafito->agrArista(v2, v4, 10);
      grafito->agrArista(v1, v4, 6);
-
+     grafito->
      grafito->imprimir(cout);
 */
     return 0;
