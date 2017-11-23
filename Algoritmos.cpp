@@ -11,59 +11,90 @@ using namespace std;
 
 		}
 
-		// int Algoritmos::iguales(Grafo* g1, Grafo* g2){
-		// 	int iguales = 0;
-    //
-		// 	if(g1->numVertices() == g2->numVertices() && g1->numAristas() == g2->numAristas()){
-		// 		iguales = 1;
-		// 		Relaciones1_1<Grafo::Vertice> relaciones;
-		// 		Grafo::Vertice v = g1->primerVertice();
-		// 		Grafo::Vertice w = 0;
-		// 		while(v != 0 && iguales){
-    //
-		// 			w = g2->primerVertice();
-		// 			while(w != 0 && g1->etiqueta(v) != g2->etiqueta(w)){
-		// 				w = g2->steVertice(w);
-		// 			}
-    //
-		// 			if(w){
-		// 				relaciones.agregar(v,w);
-		// 			}else{
-		// 				iguales = 0;
-		// 			}
-		// 			v = g1->steVertice(v);
-    //
-		// 		}
-    //
-		// 		v = g1->primerVertice();
-		// 		Grafo::Vertice vAdy = 0;
-		// 		Grafo::Vertice wAdy = 0;
-    //
-		// 		while(v != 0 && iguales){
-		// 			w = relaciones.imagen(v);
-		// 			vAdy = g1->primerVertAdy(v);
-    //
-		// 			while(vAdy != 0 && iguales){
-		// 				wAdy = g2->primerVertAdy(w);
-		// 				while(wAdy != 0 && g1->etiqueta(vAdy) != g2->etiqueta(wAdy)){
-		// 					wAdy = g2->steVertAdy(w,wAdy);
-		// 				}
-    //
-		// 				if(!wAdy){
-		// 					iguales = 0;
-		// 				}
-		// 				vAdy = g1->steVertAdy(v,vAdy);
-		// 			}
-    //
-		// 			v = g1->steVertice(v);
-		// 		}
-		// 	}
-    //
-		// 	return iguales;
-		// }
+		int Algoritmos::iguales(Grafo* g1, Grafo* g2){
+			int iguales = 0;
 
-		Grafo* Algoritmos::copiar(Grafo* g1,Grafo*g2){
+			if(g1->numVertices() == g2->numVertices() && g1->numAristas() == g2->numAristas()){
+				iguales = 1;
+				Relaciones1_1<Grafo::Vertice,Grafo::Vertice> relaciones;
+				Grafo::Vertice v = g1->primerVertice();
+				Grafo::Vertice w = 0;
 
+				while(v != 0 && iguales){
+
+					w = g2->primerVertice();
+					while(w != 0 && g1->etiqueta(v) != g2->etiqueta(w)){
+						w = g2->siguienteVertice(w);
+					}
+
+					if(w){
+						relaciones.agregar(v,w);
+					}else{
+						iguales = 0;
+					}
+					v = g1->siguienteVertice(v);
+
+				}
+
+				v = g1->primerVertice();
+				Grafo::Vertice vAdy = 0;
+				Grafo::Vertice wAdy = 0;
+
+				while(v != 0 && iguales){
+					w = relaciones.imagen(v);
+					vAdy = g1->primerVerticeAdy(v);
+
+					while(vAdy != 0 && iguales){
+						wAdy = g2->primerVerticeAdy(w);
+						while(wAdy != 0 && g1->etiqueta(vAdy) != g2->etiqueta(wAdy)){
+							wAdy = g2->siguienteVerticeAdy(w,wAdy);
+						}
+
+						if(!wAdy){
+							iguales = 0;
+						}
+						vAdy = g1->siguienteVerticeAdy(v,vAdy);
+					}
+
+					v = g1->siguienteVertice(v);
+				}
+			}
+			return iguales;
+		}
+
+		Grafo* Algoritmos::copiar(Grafo* g1,Grafo* g2){
+			if(g2->numVertices() > 0){
+				g2->vaciar();
+			}
+
+			Relaciones1_1<Grafo::Vertice,Grafo::Vertice> relaciones;
+			char etq;
+			Grafo::Vertice actual = g1->primerVertice();
+
+			while(actual){
+				etq = g1->etiqueta(actual);
+				relaciones.agregar(actual,g2->agrVertice(etq));
+				actual = g1->siguienteVertice(actual);
+			}
+
+			actual = g1->primerVertice();
+			Grafo::Vertice ady;
+			Grafo::Vertice imgAct;
+			Grafo::Vertice imgAdy;
+
+			while(actual){
+				ady = g1->primerVerticeAdy(actual);
+				imgAct = relaciones.imagen(actual);
+
+				while(ady){
+					imgAdy = relaciones.imagen(ady);
+					if(!g2->adyacentes(imgAct,imgAdy)){
+						g2->agrArista(imgAct,imgAdy,g1->peso(actual,ady));
+					}
+					ady = g1->siguienteVerticeAdy(actual,ady);
+				}
+				actual = g1->siguienteVertice(actual);
+			}
 		}
 
 		void Algoritmos::floyd(Grafo* grafo){

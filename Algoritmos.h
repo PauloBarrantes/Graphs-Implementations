@@ -17,10 +17,10 @@ class Algoritmos{
 		int nUmeroSolFactibles;
 		int numeroSolOptimas;
 		int numVerticeVisitado;
-		Grafo::Vertice * soluciónActual;
-		Grafo::Vertice * soluciónGanadora;
-		int caminoMásCorto;
-		int caminoMásCortoAct;
+		Grafo::Vertice * solucionActual;
+		Grafo::Vertice * solucionGanadora;
+		int caminoMasCorto;
+		int caminoMasCortoAct;
 		DiccionarioLSE<Grafo::Vertice> diccionarioH;
 
 	public:

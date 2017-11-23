@@ -27,37 +27,37 @@ class Relaciones1_1{
 						delete siguiente;
 					}
 				}
-
-				int esAgregableT(T elemento){
-					Relacion* actual = primera;
-					int esAgr = 1;
-
-					while(actual != 0 && esAgr){
-						if(actual->elemento1 == elemento){
-							esAgr = 0;
-						}
-
-						actual = actual->siguiente;
-					}
-
-					return esAgr;
-				}
-
-				int esAgregableK(K elemento){
-					Relacion* actual = primera;
-					int esAgr = 1;
-
-					while(actual != 0 && esAgr){
-						if(actual->element2 == elemento){
-							esAgr = 0;
-						}
-
-						actual = actual->siguiente;
-					}
-
-					return esAgr;
-				}
 		};
+
+		int esAgregableT(T elemento){
+			Relacion* actual = primera;
+			int esAgr = 1;
+
+			while(actual != 0 && esAgr){
+				if(actual->elemento1 == elemento){
+					esAgr = 0;
+				}
+
+				actual = actual->siguiente;
+			}
+
+			return esAgr;
+		}
+
+		int esAgregableK(K elemento){
+			Relacion* actual = primera;
+			int esAgr = 1;
+
+			while(actual != 0 && esAgr){
+				if(actual->elemento2 == elemento){
+					esAgr = 0;
+				}
+
+				actual = actual->siguiente;
+			}
+
+			return esAgr;
+		}
 
 	public:
 		Relaciones1_1(){

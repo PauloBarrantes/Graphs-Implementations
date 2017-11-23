@@ -39,9 +39,9 @@ class Grafo {
   		int peso(Vertice,Vertice);
 
   		Vertice primerVertice();
-  		Vertice siguienteVertice(Vertice v);
-  		Vertice primerVerticeAdy(Vertice v);
-  		Vertice siguienteVerticeAdy(Vertice v1, Vertice v2);
+  		Vertice siguienteVertice(Vertice);
+  		Vertice primerVerticeAdy(Vertice);
+  		Vertice siguienteVerticeAdy(Vertice,Vertice);
 
       Vertice buscarVertice(char);
       std::ostream& imprimir(std::ostream&);
