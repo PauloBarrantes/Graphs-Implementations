@@ -67,15 +67,15 @@ using namespace std;
 		}
 
 		void Algoritmos::floyd(Grafo* grafo){
-			int numV = grafo->numeroVertices();
+			int numV = grafo->numVertices();
 			int distancias[numV][numV];
 			int caminos[numV][numV];
 			Relaciones1_1<int,Grafo::Vertice> relaciones;
 			//Establecer relaciones
 			Grafo::Vertice actual = grafo->primerVertice();
 			for(int i=0; i<numV;++i){
-				relaciones->agregar(i,actual);
-				actual = grafo->steVertice(actual);
+				relaciones.agregar(i,actual);
+				actual = grafo->siguienteVertice(actual);
 			}
 			//llenar la matriz de distancias
 			for(int i=0;i<numV;++i){
@@ -84,11 +84,11 @@ using namespace std;
 						distancias[i][j] = 0;
 					}
 					else{
-						if(grafo->peso(relaciones->imagen(i),relaciones->imagen(j)) == 0){
+						if(grafo->peso(relaciones.imagen(i),relaciones.imagen(j)) == 0){
 							distancias[i][j] = infty;
 						}
 						else{
-							distancias[i][j] = grafo->peso(relaciones->imagen(i),relaciones->imagen(j));
+							distancias[i][j] = grafo->peso(relaciones.imagen(i),relaciones.imagen(j));
 						}
 				  }
 				}
@@ -96,13 +96,11 @@ using namespace std;
 			//rellenar la matriz de caminos
 			for(int i=0;i<numV;++i){
 				for(int j=0;j<numV;++j){
-					if(i==j || grafo->peso(relaciones->imagen(i),relaciones->imagen(j)) == 0){
+					if(i==j || grafo->peso(relaciones.imagen(i),relaciones.imagen(j)) == 0){
 						camino[i][j] = -1;
 					}
 					else{
-						if(grafo->existeArista(relaciones->imagen(i),relaciones->imagen(j))){
 							camino[i][j] = i;
-						}
 					}
 				}
 			}
