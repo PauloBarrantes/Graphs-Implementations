@@ -169,7 +169,7 @@ using namespace std;
 			//Condición de Dijkstra.
 			int costoPivote;
 			int indicePivote;
-			while(diccionario.numeroElementos() != G.numeroVertices();){
+			while(diccionario.numeroElementos() != G.numeroVertices()){
 				  //Escogencia del pivote
 					costoPivote = infty
 					for(int i=0;i<numV;++i){
