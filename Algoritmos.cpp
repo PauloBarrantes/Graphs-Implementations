@@ -198,6 +198,8 @@ using namespace std;
 			CdP<Par> cola;
 			int numAristas = 0;
 			// Primero encolamos en el vector heap todas las aristas, usando el peso como prioridad
+			// Luego metemos en Conjuntos de Conjuntos todos los vértices
+
 			Grafo::Vertice vertice = grafo->primerVertice();
 			Grafo::Vertice ady = grafo->primerVerticeAdy(vertice);
 			int i = 1;
@@ -215,8 +217,10 @@ using namespace std;
 				++i;
 
 			}
-			// Luego metemos en Conjuntos de Conjuntos todos los vértices
 			int numeroA = 0;
+
+			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
+			// La condición de parada es que numAristas sea numVertices-1
 			while(numeroA != grafos->numVertices()-1){
 				Par par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
@@ -228,9 +232,7 @@ using namespace std;
 
 			}
 
-			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
 
-			// La condición de parada es que numAristas sea numVertices-1
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
