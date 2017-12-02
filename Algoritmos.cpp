@@ -219,7 +219,7 @@ using namespace std;
 				cout << costos[i] << " | ";
 			}
 			//Imprimimos el vector de destinos.
-			cout<<"Destinos: "<<endl;
+			cout<<endl<<"Destinos: "<<endl;
 			for(int i=0;i<numV; ++i){
 				cout << grafo->etiqueta(destinos[i]) << " | ";
 			}
@@ -318,9 +318,9 @@ using namespace std;
 				cout << costos[i] << " | ";
 			}
 			//Imprimimos el vector de destinos.
-			cout<<"Destinos: "<<endl;
+			cout<< endl<<"Destinos: "<<endl;
 			for(int i=0;i<numV; ++i){
-				cout << R11.preimagen(destinos[i]) << " | ";
+				cout << grafo->etiqueta(destinos[i]) << " | ";
 			}
 			cout << endl;
 		}
