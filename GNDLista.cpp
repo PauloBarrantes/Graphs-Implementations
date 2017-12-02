@@ -265,7 +265,7 @@ using namespace std;
         if(encontrado == 0){
             std::cerr << "No se encontraron más vértices adyacentes" << '\n';
         }else{
-            arista->siguienteArista;
+            arista = arista->siguienteArista;
         }
 
         return arista->verticeA;
