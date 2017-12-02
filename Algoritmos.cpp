@@ -217,7 +217,7 @@ using namespace std;
 			//Imprimimos el vector de destinos.
 			cout<<"Destinos: "<<endl;
 			for(int i=0;i<numV; ++i){
-				cout << R11.preimagen(destinos[i]) << " | ";
+				cout << grafo->etiqueta(destinos[i]) << " | ";
 			}
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
