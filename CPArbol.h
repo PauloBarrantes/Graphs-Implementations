@@ -19,7 +19,6 @@ class CPArbol{
 				int prioridad;
 
 				Par(){
-					elemento ='\0';
 					prioridad = 0;
 				}
 
@@ -101,6 +100,18 @@ class CPArbol{
 			}
 
 			return cajaSalida.elemento;
+		}
+
+		int pertenece(T elemento){
+			int siPert = 0;
+			if(!vacia()){
+				for(int i = 1; i <= ultimo && !siPert; ++i){
+					if(elemento == arbolVecPar[i].elemento){
+						siPert = 1;
+					}
+				}
+			}
+			return siPert;
 		}
 
 		int numElem(){

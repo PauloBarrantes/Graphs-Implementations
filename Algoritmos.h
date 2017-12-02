@@ -4,27 +4,42 @@
 #include "DiccionarioLSE.h"
 #include "CPArbol.h"
 #include "Relaciones1_1.h"
+#include "CDCD.h"
 #include "GNDMatriz.h"
 //#include "GNDLista.h"
-struct tripleta
+
+struct Tripleta
 {
-	Vertice v1;
-	Vertice v2;
+	Grafo::Vertice v1;
+	Grafo::Vertice v2;
 	int peso;
-	par(Grafo::Vertice v1, Grafo::Vertice v2){
+
+	Tripleta(){}
+
+	Tripleta(Grafo::Vertice v1, Grafo::Vertice v2, int peos){
 		this->v1 = v1;
 		this->v2 = v2;
+		this->peso = peso;
 	}
 
-}
+	int operator==(const Tripleta& otra){
+		int iguales = 1;
+		if(otra.v1 != this->v1 || otra.v2 != this->v2 ||
+		otra.peso != this->peso){}
+	}
+
+	Tripleta& operator=(const Tripleta& otra){
+		this->v1 = otra.v1;
+		this->v2 = otra.v2;
+		this->peso = otra.peso;
+		return *this;
+	}
+
+};
 
 class Algoritmos{
 
 	private:
-		Grafo* grafo1;
-		Grafo* grafo2;
-
-
 		int costoActual;
 		int costoGlobal;
 		int numVertice;

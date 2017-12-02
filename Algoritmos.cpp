@@ -153,12 +153,12 @@ using namespace std;
 		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
 		 	Relaciones1_1<int, Grafo::Vertice> R11;
 		 	DiccionarioLSE<Grafo::Vertice> diccionario;
-			int numV = grafo->numeroVertices();
+			int numV = grafo->numVertices();
 			Grafo::Vertice destinos [numV];
 		 	int costos [numV];
 			Grafo::Vertice actual = grafo->primerVertice();
 			for(int i=0; i<numV;++i){
-				relaciones.agregar(i,actual);
+				R11.agregar(i,actual);
 				actual = grafo->siguienteVertice(actual);
 			}
 			//inicializamos distancias en infinito, primer vertice en 0.
@@ -169,33 +169,33 @@ using namespace std;
 			//Condición de Dijkstra.
 			int costoPivote;
 			int indicePivote;
-			while(diccionario.numeroElementos() != G.numeroVertices()){
+			while(diccionario.numElem() != grafo->numVertices()){
 				  //Escogencia del pivote
-					costoPivote = infty
+					costoPivote = infty;
 					for(int i=0;i<numV;++i){
-						if(!diccionario.pertenece(R11->imagen(i))){
+						if(!diccionario.pertenece(R11.imagen(i))){
 							if(costoPivote > costos[i]){
-								costoPivote = costo[i];
+								costoPivote = costos[i];
 								indicePivote = i;
 							}
 						}
 					}
-				diccionario.agregar(R11->imagen(indiceMenor));
-				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.imagen(indiceMenor));
+				diccionario.agregar(R11.imagen(indicePivote));
+				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.imagen(indicePivote));
 				while(adyacente!=0){
 				 	if(!diccionario.pertenece(adyacente)){
-						if(costos[indiceMenor] + grafo->peso(R11.imagen(indiceMenor), adyacente) < costos[R11.preimagen(adyacente)])
-		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indiceMenor), adyacente);
-				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indiceMenor);
+						if(costos[indicePivote] + grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
+		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente);
+				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
 						}
 					}
 				}
-	    //
+	    }
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
 			DiccionarioLSE<Grafo::Vertice>diccionario;
-			CdCd<Grafo::Vertice> conjunto;
-			CdP<Par> cola;
+			CDCD<Grafo::Vertice> conjunto;
+			CPArbol<Tripleta> cola;
 			int numAristas = 0;
 			// Primero encolamos en el vector heap todas las aristas, usando el peso como prioridad
 			// Luego metemos en Conjuntos de Conjuntos todos los vértices
@@ -206,9 +206,9 @@ using namespace std;
 			while(vertice != 0){
 				conjunto.agregarConjunto(i, vertice);
 				while(ady != 0){
-					Par parsito =  Par(vertice, ady);
-					if(!cola.pertenece(parsito)){ //Preguntar si la arista ya fue guardada
-						cola.agregar(parsito,grafo->peso(vertice, ady));
+					Tripleta tripleta =  Tripleta(vertice, ady, grafo->peso(vertice, ady));
+					if(!cola.pertenece(tripleta)){ //Preguntar si la arista ya fue guardada
+						cola.agregar(tripleta,grafo->peso(vertice, ady));
 					}
 					ady = grafo->siguienteVerticeAdy(vertice, ady);
 				}
@@ -221,10 +221,10 @@ using namespace std;
 
 			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
 			// La condición de parada es que numAristas sea numVertices-1
-			while(numeroA != grafos->numVertices()-1){
-				Par par = cola.sacar();
+			while(numeroA != grafo->numVertices()-1){
+				Tripleta par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
-					cout << grafos->etiqueta(par.v1) << "<---" << grafos->pesos(par.v1,par.v2) << "--->" << grafos->etiqueta(par.v2)<<endl;
+					cout << grafo->etiqueta(par.v1) << "<---" << grafo->peso(par.v1,par.v2) << "--->" << grafo->etiqueta(par.v2)<<endl;
 					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
 				}else{
 					std::cerr << "Esa Arista ya esta el arbol de minimo costo" << '\n';
@@ -239,11 +239,11 @@ using namespace std;
 			int costoTotal =0;
 			Relaciones1_1<Grafo::Vertice, int > R11;
 			DiccionarioLSE<Grafo::Vertice> diccionario;
-			int costos [grafo->numeroVertices()-1];
-			Grafo::Vertice verticesConectados [grafo->numeroVertices()];
-			Grafo::Vertice v = G->primerVertice();
+			int costos [grafo->numVertices()-1];
+			Grafo::Vertice verticesConectados [grafo->numVertices()];
+			Grafo::Vertice v = grafo->primerVertice();
 			// Llenamos los arreglos y creamos las relaciones 1 a 1
-			for(int i = 0; i < grafo->numeroVertices(); ++i){
+			for(int i = 0; i < grafo->numVertices(); ++i){
 				R11.agregar(v, i);
 				if(grafo->adyacentes(verticesConectados[0], v)){
 					costos[i] = grafo->peso(verticesConectados[0], v);
@@ -255,15 +255,15 @@ using namespace std;
 			}
 			//Marcamos los adyacentes a A
 			costos[0] = 0;
-			v= G->primerVertice();
-			diccionario.agregar(v1);
+			v= grafo->primerVertice();
+			diccionario.agregar(v);
 			int encontradoMenor = infty;
 			int indiceMenor = 0;
-			while(diccionario.numeroElementos() != G.numeroVertices()){
+			while(diccionario.numElem() != grafo->numVertices()){
 				encontradoMenor = infty;
 
 				//Busco el de menor Costo
-				for (int i =1; i < grafo->numeroVertices(); i++){
+				for (int i =1; i < grafo->numVertices(); i++){
 					if(encontradoMenor > costos[i] && !diccionario.pertenece(R11.preimagen(i))){
 						encontradoMenor = costos[i];
 						indiceMenor = i;
