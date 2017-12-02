@@ -58,9 +58,24 @@ int main(int argN, char const *argV[]){
   algoritmos.copiar(&m1, &m2);
   m2.imprimir(cout);
 
-  //algoritmos.dijkstra(&m1,m1.buscarVertice('a'));
-  //algoritmos.prim(&m1);
-  //algoritmos.kruskal(&m1);
+  cout << "Floyd inicio" << endl;
+  algoritmos.floyd(&m1);
+  cout << "Floyd fin" << endl;
+
+
+  cout << "Kruskal inicio" << endl;
+  algoritmos.kruskal(&m1);
+  cout << "Kruskal fin" << endl;
+
+  /*
+  cout << "Prim inicio" << endl;
+  algoritmos.prim(&m1);
+  cout << "Prim fin" << endl;
+
+  cout << "Dijkstra inicio" << endl;
+  algoritmos.dijkstra(&m1, m1.buscarVertice('c'));
+  cout << "Dijkstra fin" << endl;
+  */
 
   //m1.elimVertice(m1.buscarVertice('a'));
   //m1.elimVertice(m1.buscarVertice('c'));

@@ -2,7 +2,7 @@
 #define _coladeprioridadArbol_2017
 
 #include <iostream>
-#define Q 12
+#define Q 20
 
 template<class T>
 

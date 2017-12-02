@@ -8,6 +8,8 @@
 #include "GNDMatriz.h"
 //#include "GNDLista.h"
 
+#include <iostream>
+
 struct Tripleta
 {
 	Grafo::Vertice v1;
@@ -25,7 +27,10 @@ struct Tripleta
 	int operator==(const Tripleta& otra){
 		int iguales = 1;
 		if(otra.v1 != this->v1 || otra.v2 != this->v2 ||
-		otra.peso != this->peso){}
+		otra.peso != this->peso){
+			iguales = 0;
+		}
+		return iguales;
 	}
 
 	Tripleta& operator=(const Tripleta& otra){
@@ -33,6 +38,10 @@ struct Tripleta
 		this->v2 = otra.v2;
 		this->peso = otra.peso;
 		return *this;
+	}
+
+	std::ostream& operator<<(std::ostream& salida){
+		salida << "(" << v1 << "," << v2 << "," << peso << ")";
 	}
 
 };
