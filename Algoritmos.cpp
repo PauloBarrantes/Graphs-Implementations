@@ -159,7 +159,12 @@ using namespace std;
 			cout<<"Caminos: "<<endl;
 			for(int i=0;i<numV; ++i){
 				for(int j=0;j<numV; ++j){
-					cout << caminos[i][j] << " ";
+					if(caminos[i][j] == -1){
+						cout << caminos[i][j] << " ";
+					}
+					else{
+						cout << grafo->etiqueta(relaciones.imagen(caminos[i][j])) << " ";
+					}
 				}
 				cout<<endl;
 			}
