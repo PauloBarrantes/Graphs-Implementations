@@ -128,7 +128,7 @@ using namespace std;
 			//rellenar la matriz de caminos
 			for(int i=0;i<numV;++i){
 				for(int j=0;j<numV;++j){
-					if(i==j || grafo->peso(relaciones.imagen(i),relaciones.imagen(j)) == 0){
+					if(i==j || !grafo->adyacentes(relaciones.imagen(i),relaciones.imagen(j))){
 						caminos[i][j] = -1;
 					}
 					else{
@@ -159,7 +159,12 @@ using namespace std;
 			for(int i=0;i<numV; ++i){
 				for(int j=0;j<numV; ++j){
 					if(caminos[i][j] == -1){
-						cout << caminos[i][j] << " ";
+						if(i==j){
+							cout << "$ ";
+						}
+						else{
+							cout << caminos[i][j] << " ";
+						}
 					}
 					else{
 						cout << grafo->etiqueta(relaciones.imagen(caminos[i][j])) << " ";
