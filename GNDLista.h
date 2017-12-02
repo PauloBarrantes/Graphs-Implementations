@@ -34,19 +34,19 @@ class Grafo {
 
     public:
         typedef Caja* Vertice;
-        Grafo();//X
-        ~Grafo();//X
-        void vaciar();//X
-        int vacia();//X
-        Vertice agrVertice (char); // X
-        int peso(Vertice,Vertice);//X
+        Grafo();
+        ~Grafo();
+        void vaciar();
+        int vacia();
+        Vertice agrVertice (char);
+        int peso(Vertice,Vertice);
         void agrArista(Vertice,Vertice,int);
-        void modificarPeso(Vertice,Vertice, int);//
-        void elimVertice(Vertice);//
-        void elimArista(Vertice, Vertice); //
-        void modificarEtiqueta(Vertice, char);//
-        char etiqueta(Vertice);//
-        int numVertices();//
+        void modificarPeso(Vertice,Vertice, int);
+        void elimVertice(Vertice);
+        void elimArista(Vertice, Vertice);
+        void modificarEtiqueta(Vertice, char);
+        char etiqueta(Vertice);
+        int numVertices();
         int numAristas();
         int numVerticesAdy(Vertice);
         int adyacentes(Vertice, Vertice);
