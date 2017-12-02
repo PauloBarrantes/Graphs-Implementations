@@ -147,6 +147,22 @@ using namespace std;
 					}
 				}
 			}
+			//Imprimimos la matriz de distancias.
+			cout<<"Distancias: "<< endl;
+			for(int i=0;i<numV; ++i){
+				for(int j=0;j<numV; ++j){
+					cout << distancias[i][j] << " ";
+				}
+				cout<<endl;
+			}
+			//Imprimimos la matriz de caminos.
+			cout<<"Caminos: "<<endl;
+			for(int i=0;i<numV; ++i){
+				for(int j=0;j<numV; ++j){
+					cout << caminos[i][j] << " ";
+				}
+				cout<<endl;
+			}
 		}
 
 		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
@@ -190,8 +206,19 @@ using namespace std;
 				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
 						}
 					}
+					adyacente = grafo->siguienteVerticeAdy(R11.imagen(indicePivote),adyacente);
 				}
 	    }
+			//Imprimimos el vector de costos.
+			cout<<"Costos: "<< endl;
+			for(int i=0;i<numV; ++i){
+				cout << costos[i] << " | ";
+			}
+			//Imprimimos el vector de destinos.
+			cout<<"Destinos: "<<endl;
+			for(int i=0;i<numV; ++i){
+				cout << R11.preimagen(destinos[i]) << " | ";
+			}
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
 			DiccionarioLSE<Grafo::Vertice>diccionario;
