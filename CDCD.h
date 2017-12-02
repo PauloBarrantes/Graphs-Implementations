@@ -130,7 +130,7 @@ class CDCD{
         }
         conjActual = conjActual->siguiente;
       }
-      return conjAlQuePertenece;
+      return conjAlQuePertenece->identificador;
     }
     void agregarConjunto(int nuevoId,T elem){
       Conjunto* nuevoConj = new Conjunto(nuevoId);
