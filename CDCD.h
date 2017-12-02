@@ -119,8 +119,9 @@ class CDCD{
       Conjunto* conjAlQuePertenece = 0;
       bool encontro = false;
       Conjunto* conjActual = this->primerConjunto;
-      CajitaElem* CajitaElemActual = conjActual->primerElemento;
-      while (conjActual->siguiente != 0 && !encontro) {
+      CajitaElem* CajitaElemActual = 0;
+      while (conjActual != 0 && !encontro) {
+        CajitaElemActual = conjActual->primerElemento;
         while (CajitaElemActual != 0 && !encontro){
           if(CajitaElemActual->elemento == elem){
             encontro = true;

@@ -1,5 +1,4 @@
 #include "Algoritmos.h"
-#include <iostream>
 #define infty 100000000
 using namespace std;
 
@@ -117,7 +116,7 @@ using namespace std;
 						distancias[i][j] = 0;
 					}
 					else{
-						if(grafo->peso(relaciones.imagen(i),relaciones.imagen(j)) == 0){
+						if(!grafo->adyacentes(relaciones.imagen(i),relaciones.imagen(j))){
 							distancias[i][j] = infty;
 						}
 						else{
@@ -157,12 +156,14 @@ using namespace std;
 			Grafo::Vertice destinos [numV];
 		 	int costos [numV];
 			Grafo::Vertice actual = grafo->primerVertice();
+
 			for(int i=0; i<numV;++i){
 				R11.agregar(i,actual);
 				actual = grafo->siguienteVertice(actual);
 			}
 			//inicializamos distancias en infinito, primer vertice en 0.
 			costos[0] = 0;
+
 			for(int i=1; i<numV;++i){
 			 costos[i] = infty;
 		  }
@@ -201,9 +202,10 @@ using namespace std;
 			// Luego metemos en Conjuntos de Conjuntos todos los vértices
 
 			Grafo::Vertice vertice = grafo->primerVertice();
-			Grafo::Vertice ady = grafo->primerVerticeAdy(vertice);
+			Grafo::Vertice ady = 0;
 			int i = 1;
 			while(vertice != 0){
+				ady = grafo->primerVerticeAdy(vertice);
 				conjunto.agregarConjunto(i, vertice);
 				while(ady != 0){
 					Tripleta tripleta =  Tripleta(vertice, ady, grafo->peso(vertice, ady));
@@ -215,7 +217,6 @@ using namespace std;
 
 				vertice = grafo->siguienteVertice(vertice);
 				++i;
-
 			}
 			int numeroA = 0;
 
@@ -226,13 +227,11 @@ using namespace std;
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
 					cout << grafo->etiqueta(par.v1) << "<---" << grafo->peso(par.v1,par.v2) << "--->" << grafo->etiqueta(par.v2)<<endl;
 					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
+					++numeroA;
 				}else{
 					std::cerr << "Esa Arista ya esta el arbol de minimo costo" << '\n';
 				}
-
 			}
-
-
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
