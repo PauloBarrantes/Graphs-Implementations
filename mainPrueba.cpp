@@ -68,9 +68,9 @@ int main(int argN, char const *argV[]){
   cout << "Kruskal fin" << endl;
 
 
-  //cout << "Prim inicio" << endl;
-  //algoritmos.prim(&m1);
-  //cout << "Prim fin" << endl;
+  cout << "Prim inicio" << endl;
+  algoritmos.prim(&m1);
+  cout << "Prim fin" << endl;
 
 
   cout << "Dijkstra inicio" << endl;
