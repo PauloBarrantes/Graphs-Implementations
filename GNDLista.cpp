@@ -139,26 +139,34 @@ using namespace std;
     void Grafo::elimVertice(Grafo::Vertice vertice){
         Grafo::Vertice v = primero;
         int eliminado = 0;
+        cout << "1" << endl;
         if(primero == vertice){
+            cout << "2" << endl;
             primero = vertice->siguienteCaja;
             vertice->siguienteCaja = 0;
             delete v;
         }else{
+            cout << "3" << endl;
             while(v->siguienteCaja != 0 && eliminado){
+                cout << "4" << endl;
                 if(v->siguienteCaja == vertice){
+                    cout << "5" << endl;
                     Grafo::Vertice victima = v->siguienteCaja;
                     v->siguienteCaja = (v->siguienteCaja)->siguienteCaja; // Lo brincamos
                     victima->siguienteCaja = 0;
                     delete victima;
                     eliminado = 1;
                 }else{
+                    cout << "6" << endl;
                     v = v->siguienteCaja;
                 }
             }
             if(v->siguienteCaja != 0){
+                cout << "7" << endl;
                 ultimo = v;
             }
         }
+        cout << "8" << endl;
         --numeroVertices;
     }
     void Grafo::elimArista(Grafo::Vertice ver1, Grafo::Vertice ver2){

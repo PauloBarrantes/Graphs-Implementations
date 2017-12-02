@@ -5,8 +5,8 @@
 #include "CPArbol.h"
 #include "Relaciones1_1.h"
 #include "CDCD.h"
-#include "GNDMatriz.h"
-//#include "GNDLista.h"
+//#include "GNDMatriz.h"
+#include "GNDLista.h"
 
 #include <iostream>
 

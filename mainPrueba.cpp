@@ -32,7 +32,7 @@ int main(int argN, char const *argV[]){
   m1.agrArista(m1.buscarVertice('e'),m1.buscarVertice('c'),20);
   m1.agrArista(m1.buscarVertice('b'),m1.buscarVertice('d'),32);
   m1.agrArista(m1.buscarVertice('e'),m1.buscarVertice('d'),1);
-  m1.imprimir(cout);
+  //m1.imprimir(cout);
   cout << endl;
 
   m2.agrArista(m2.buscarVertice('l'),m2.buscarVertice('p'),6);
@@ -49,15 +49,15 @@ int main(int argN, char const *argV[]){
   m2.agrArista(m2.buscarVertice('q'),m2.buscarVertice('r'),1);
   m2.agrArista(m2.buscarVertice('r'),m2.buscarVertice('s'),14);
 
-  //m1.elimArista(m1.buscarVertice('e'),m1.buscarVertice('d'));
-  //m1.elimArista(m1.buscarVertice('c'),m1.buscarVertice('e'));
-  //m1.elimArista(m1.buscarVertice('a'),m1.buscarVertice('d'));
+  m1.elimArista(m1.buscarVertice('e'),m1.buscarVertice('d'));
+  m1.elimArista(m1.buscarVertice('c'),m1.buscarVertice('e'));
+  m1.elimArista(m1.buscarVertice('a'),m1.buscarVertice('d'));
   //m1.imprimir(cout);
-  //cout << endl;
+  cout << endl;
 
-  //m1.elimVertice(m1.buscarVertice('e'));
-  //m1.imprimir(cout);
-  //cout << endl;
+  m1.elimVertice(m1.buscarVertice('e'));
+  m1.imprimir(cout);
+  cout << endl;
 
   /*
   cout << "Este es el grafo 1: " << endl;
@@ -83,9 +83,14 @@ int main(int argN, char const *argV[]){
   algoritmos.dijkstra(&m1, m1.buscarVertice('d'));
   cout << "Dijkstra fin" << endl;
   cout << endl;
+
+  cout << "Problema del vendedor inicion" << endl;
+  algoritmos.problemaDelVendedor(&m1);
+  cout << "Problema del vendedor fin" << endl;
+  cout << endl;
   */
 
-  m2.imprimir(cout);
+  //m2.imprimir(cout);
   cout << endl;
 
   return 0;
