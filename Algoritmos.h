@@ -56,7 +56,8 @@ class Algoritmos{
 		Grafo::Vertice * solucionActual;
 		Grafo::Vertice * solucionGanadora;
 		DiccionarioLSE<Grafo::Vertice> diccionarioH;
-
+		int numSolucionesFactibles;
+		int numSolucionesOptimas;
 	public:
 		Algoritmos();
 		~Algoritmos();
