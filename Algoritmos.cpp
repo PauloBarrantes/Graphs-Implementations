@@ -179,9 +179,14 @@ using namespace std;
 			}
 			//inicializamos distancias en infinito, primer vertice en 0.
 			costos[0] = 0;
-
-			for(int i=1; i<numV;++i){
-			 costos[i] = infty;
+			actual = grafo->primerVertice();
+			for(int i=0; i<numV;++i){
+				if(actual == vertice){
+					costos[i] = 0;
+				}else{
+					costos[i] = infty;
+				}
+				actual = grafo->siguienteVertice(actual);
 		  }
 			//Condición de Dijkstra.
 			int costoPivote;
@@ -202,7 +207,7 @@ using namespace std;
 				while(adyacente!=0){
 				 	if(!diccionario.pertenece(adyacente)){
 						if(costos[indicePivote] + grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
-		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente);
+		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente) + costos[indicePivote];
 				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
 						}
 					}

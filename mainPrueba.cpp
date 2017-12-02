@@ -67,15 +67,16 @@ int main(int argN, char const *argV[]){
   algoritmos.kruskal(&m1);
   cout << "Kruskal fin" << endl;
 
-  /*
-  cout << "Prim inicio" << endl;
-  algoritmos.prim(&m1);
-  cout << "Prim fin" << endl;
+
+  //cout << "Prim inicio" << endl;
+  //algoritmos.prim(&m1);
+  //cout << "Prim fin" << endl;
+
 
   cout << "Dijkstra inicio" << endl;
-  algoritmos.dijkstra(&m1, m1.buscarVertice('c'));
+  algoritmos.dijkstra(&m1, m1.buscarVertice('d'));
   cout << "Dijkstra fin" << endl;
-  */
+
 
   //m1.elimVertice(m1.buscarVertice('a'));
   //m1.elimVertice(m1.buscarVertice('c'));
