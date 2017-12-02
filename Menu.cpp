@@ -480,10 +480,16 @@ void Menu::kruskal (){
 }
 void Menu::copiar (){
     if(grafo1 != 0){
-        algoritmo->problemaDelVendedor(grafo1);
+        if(grafo2 != 0 ){
+            grafo2 = new Grafo();
+        }
+        algoritmo->copiar(grafo1,grafo2);
     }else{
         cout<<"Grafo no creado" <<endl;
         iniciar();
+        if(grafo2 !=0){
+            grafo2 = new Grafo();
+        }
         grafo1->agrVertice('a');
         grafo1->agrVertice('b');
         grafo1->agrVertice('c');
@@ -491,18 +497,24 @@ void Menu::copiar (){
         agrArista();
         agrArista();
 
-        algoritmo->problemaDelVendedor(grafo1);
+        algoritmo->problemaDelVendedor(grafo1, grafo2);
 
 
     }
 }
 void Menu::iguales (){
     if(grafo1 != 0){
-        algoritmo->problemaDelVendedor(grafo1);
+        if(grafo2 != 0){
+            grafo2 = new Grafo();
+        }
+        algoritmo->iguales(grafo1, grafo2);
     }else{
 
         cout<<"Grafo no creado" <<endl;
         iniciar();
+        if(grafo2 != 0){
+            grafo2 = new Grafo();
+        }
         grafo1->agrVertice('a');
         grafo1->agrVertice('b');
         grafo1->agrVertice('c');

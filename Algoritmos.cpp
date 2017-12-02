@@ -338,7 +338,8 @@ using namespace std;
 			solucionActual[0] = primerV;
 		 	diccionarioH.agregar(primerV);
 		 	problemaDelVendedorR(grafo, primerV,1);
-
+			numSolucionesOptimas = 0;
+			numSolucionesFactibles =0;
 			cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
 			for(int i = 0; i < grafo->numVertices();i++){
 				cout <<"Vértice -> " << grafo->etiqueta(solucionGanadora[i])<< "->";
@@ -355,14 +356,19 @@ using namespace std;
 		 				costoActual += grafo->peso(vertice, verticeAdy);
 						solucionActual[numVertice] = verticeAdy;
 
-		 				if(numVertice == grafo->numVertices()-1){//Preguntamos por condición de parada
-								if(costoActual < costoGlobal && grafo->adyacentes(solucionActual[0], verticeAdy)){
+		 				if(numVertice == grafo->numVertices()-1 && grafo->adyacentes(solucionActual[0], verticeAdy)){//Preguntamos por condición de parada
+							++numSolucionesFactibles;
+								if(costoActual < costoGlobal){
+									numSolucionesOptimas = 0;
 			 						costoGlobal = costoActual;
 									costoGlobal += grafo->peso(solucionActual[0], verticeAdy);
 									for(int i = 1; i < grafo->numVertices();++i){
 										solucionGanadora[i] = solucionActual[i];
 									}
 			 					}
+								if(costoActual == costoGlobal){
+									numSolucionesOptimas++;
+								}
 
 
 		 				}else{

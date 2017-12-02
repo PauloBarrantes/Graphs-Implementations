@@ -5,8 +5,8 @@
 #include "CPArbol.h"
 #include "Relaciones1_1.h"
 #include "CDCD.h"
-#include "GNDMatriz.h"
-//#include "GNDLista.h"
+//#include "GNDMatriz.h"
+#include "GNDLista.h"
 
 #include <iostream>
 
@@ -56,7 +56,8 @@ class Algoritmos{
 		Grafo::Vertice * solucionActual;
 		Grafo::Vertice * solucionGanadora;
 		DiccionarioLSE<Grafo::Vertice> diccionarioH;
-
+		int numSolucionesFactibles;
+		int numSolucionesOptimas;
 	public:
 		Algoritmos();
 		~Algoritmos();
