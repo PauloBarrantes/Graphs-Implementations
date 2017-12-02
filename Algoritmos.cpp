@@ -178,10 +178,14 @@ using namespace std;
 				actual = grafo->siguienteVertice(actual);
 			}
 			//inicializamos distancias en infinito, primer vertice en 0.
-			costos[0] = 0;
-
-			for(int i=1; i<numV;++i){
-			 costos[i] = infty;
+			actual = grafo->primerVertice();
+			for(int i=0; i<numV;++i){
+				if(actual == vertice){
+					costos[i] = 0;
+				}else{
+					costos[i] = infty;
+				}
+				actual = grafo->siguienteVertice(actual);
 		  }
 			//Condición de Dijkstra.
 			int costoPivote;
@@ -202,7 +206,7 @@ using namespace std;
 				while(adyacente!=0){
 				 	if(!diccionario.pertenece(adyacente)){
 						if(costos[indicePivote] + grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
-		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente);
+		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente) + costos[indicePivote];
 				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
 						}
 					}
@@ -219,6 +223,7 @@ using namespace std;
 			for(int i=0;i<numV; ++i){
 				cout << grafo->etiqueta(destinos[i]) << " | ";
 			}
+			cout << endl;
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
 			DiccionarioLSE<Grafo::Vertice>diccionario;
@@ -262,52 +267,62 @@ using namespace std;
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
-			int costoTotal =0;
-			Relaciones1_1<Grafo::Vertice, int > R11;
-			DiccionarioLSE<Grafo::Vertice> diccionario;
-			int costos [grafo->numVertices()-1];
-			Grafo::Vertice verticesConectados [grafo->numVertices()];
-			Grafo::Vertice v = grafo->primerVertice();
-			// Llenamos los arreglos y creamos las relaciones 1 a 1
-			for(int i = 0; i < grafo->numVertices(); ++i){
-				R11.agregar(v, i);
-				if(grafo->adyacentes(verticesConectados[0], v)){
-					costos[i] = grafo->peso(verticesConectados[0], v);
-				}else{
-					costos[i] = infty;
-				}
-				verticesConectados[i] =	v;
-				v = grafo->siguienteVertice(v);
+			int costoTotal = 0;
+			Relaciones1_1<int, Grafo::Vertice> R11;
+		 	DiccionarioLSE<Grafo::Vertice> diccionario;
+			int numV = grafo->numVertices();
+			Grafo::Vertice destinos [numV];
+		 	int costos [numV];
+			Grafo::Vertice actual = grafo->primerVertice();
+
+			for(int i=0; i<numV;++i){
+				R11.agregar(i,actual);
+				actual = grafo->siguienteVertice(actual);
 			}
-			//Marcamos los adyacentes a A
+			//inicializamos distancias en infinito, primer vertice en 0.
 			costos[0] = 0;
-			v= grafo->primerVertice();
-			diccionario.agregar(v);
-			int encontradoMenor = infty;
-			int indiceMenor = 0;
+			actual = grafo->primerVertice();
+			for(int i=1; i<numV;++i){
+				costos[i] = infty;
+		  }
+			//Condición de Dijkstra.
+			int costoPivote;
+			int indicePivote;
 			while(diccionario.numElem() != grafo->numVertices()){
-				encontradoMenor = infty;
-
-				//Busco el de menor Costo
-				for (int i =1; i < grafo->numVertices(); i++){
-					if(encontradoMenor > costos[i] && !diccionario.pertenece(R11.preimagen(i))){
-						encontradoMenor = costos[i];
-						indiceMenor = i;
+				  //Escogencia del pivote
+					costoPivote = infty;
+					for(int i=0;i<numV;++i){
+						if(!diccionario.pertenece(R11.imagen(i))){
+							if(costoPivote > costos[i]){
+								costoPivote = costos[i];
+								indicePivote = i;
+							}
+						}
 					}
-				}
-				diccionario.agregar(R11.preimagen(indiceMenor));
-				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.preimagen(indiceMenor));
+				diccionario.agregar(R11.imagen(indicePivote));
+				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.imagen(indicePivote));
 				while(adyacente!=0){
-					if(!diccionario.pertenece(adyacente) && grafo->peso(R11.preimagen(indiceMenor), adyacente)<= costos[R11.imagen(adyacente)]){
-						 costos[R11.imagen(adyacente)] = grafo->peso(R11.preimagen(indiceMenor), adyacente);
-						 verticesConectados[adyacente] = R11.preimagen(indiceMenor);
-						 costoTotal +=  grafo->peso(R11.preimagen(indiceMenor), adyacente);
+				 	if(!diccionario.pertenece(adyacente)){
+						if(grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
+		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente);
+				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
+							costoTotal += grafo->peso(R11.imagen(indicePivote), adyacente);
+						}
 					}
+					adyacente = grafo->siguienteVerticeAdy(R11.imagen(indicePivote),adyacente);
 				}
-
+	    }
+			//Imprimimos el vector de costos.
+			cout<<"Costos: "<< endl;
+			for(int i=0;i<numV; ++i){
+				cout << costos[i] << " | ";
 			}
-
-
+			//Imprimimos el vector de destinos.
+			cout<<"Destinos: "<<endl;
+			for(int i=0;i<numV; ++i){
+				cout << R11.preimagen(destinos[i]) << " | ";
+			}
+			cout << endl;
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
