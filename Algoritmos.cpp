@@ -147,8 +147,7 @@ using namespace std;
 					}
 				}
 			}
-			//Imprimimos la matriz de distancias.
-			cout<<"Distancias: "<< endl;
+      cout<<"Distancias: "<< endl;
 			for(int i=0;i<numV; ++i){
 				for(int j=0;j<numV; ++j){
 					cout << distancias[i][j] << " ";
@@ -265,8 +264,6 @@ using namespace std;
 					cout << grafo->etiqueta(par.v1) << "<---" << grafo->peso(par.v1,par.v2) << "--->" << grafo->etiqueta(par.v2)<<endl;
 					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
 					++numeroA;
-				}else{
-					std::cerr << "Esa Arista ya esta el arbol de minimo costo" << '\n';
 				}
 			}
 		}
@@ -318,15 +315,12 @@ using namespace std;
 				}
 	    }
 			//Imprimimos el vector de costos.
-			cout<<"Costos: "<< endl;
 			for(int i=0;i<numV; ++i){
-				cout << costos[i] << " | ";
+				if(costos[i]){
+					cout << grafo->etiqueta(destinos[i]) << "<---" << costos[i] << "--->" << grafo->etiqueta(R11.imagen(i))<<endl;
+				}
 			}
-			//Imprimimos el vector de destinos.
-			cout<< endl<<"Destinos: "<<endl;
-			for(int i=0;i<numV; ++i){
-				cout << grafo->etiqueta(destinos[i]) << " | ";
-			}
+
 			cout << endl;
 		}
 
