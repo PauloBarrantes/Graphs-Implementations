@@ -54,7 +54,7 @@ class CPArbol{
 		}
 
 		int vacia(){
-			return ultimo;
+			return !ultimo;
 		}
 
 		void agregar(T elemento,int prioridad){
@@ -65,7 +65,7 @@ class CPArbol{
 
 			//Proceso de reacomodamiento
 			int posAct = ultimo;
-			while(posAct <= 1 && arbolVecPar[posAct/2].prioridad > arbolVecPar[posAct].prioridad){
+			while(posAct > 1 && arbolVecPar[posAct/2].prioridad > arbolVecPar[posAct].prioridad){
 				arbolVecPar[posAct] = arbolVecPar[posAct/2];
 				arbolVecPar[posAct/2] = cajaExtra;
 				posAct = posAct/2;
@@ -82,12 +82,15 @@ class CPArbol{
 			int posCajaEx = 0;
 			int acomodado = 0;
 			Par cajaExtra = arbolVecPar[1];
-			while(posAct*2 + 1 <= ultimo && !acomodado){
+			while(posAct*2 <= ultimo && !acomodado){
 				cajaExtra = arbolVecPar[posAct*2];
 				posCajaEx = posAct*2;
-				if(cajaExtra.prioridad > arbolVecPar[posAct*2 + 1].prioridad){
-					cajaExtra = arbolVecPar[posAct*2 + 1];
-					posCajaEx = posAct*2 + 1;
+
+				if(posAct*2 + 1 <= ultimo){
+					if(cajaExtra.prioridad > arbolVecPar[posAct*2 + 1].prioridad){
+						cajaExtra = arbolVecPar[posAct*2 + 1];
+						posCajaEx = posAct*2 + 1;
+					}
 				}
 
 				if(cajaExtra.prioridad < arbolVecPar[posAct].prioridad){
@@ -116,6 +119,13 @@ class CPArbol{
 
 		int numElem(){
 			return ultimo;
+		}
+
+		std::ostream& imprimir(std::ostream& salida){
+			for(int i = 1; i <= ultimo; ++i){
+				salida << "(" << arbolVecPar[i].elemento << "," << arbolVecPar[i].prioridad << ") - ";
+			}
+			salida << std::endl;
 		}
 };
 

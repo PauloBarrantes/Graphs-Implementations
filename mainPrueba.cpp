@@ -16,6 +16,7 @@ int main(int argN, char const *argV[]){
   m1.agrVertice('d');
   m1.agrVertice('e');
   m1.imprimir(cout);
+  cout << m1.numVertices() << endl;
 
   m2.agrVertice('a');
   m2.agrVertice('b');
@@ -46,6 +47,20 @@ int main(int argN, char const *argV[]){
 
   cout << algoritmos.iguales(&m1, &m2) << endl;
 
+  m2.modificarEtiqueta(m2.buscarVertice('f'),'e');
+
+  cout << algoritmos.iguales(&m1, &m2) << endl;
+
+  m2.vaciar();
+  m2.imprimir(cout);
+  cout << endl;
+
+  algoritmos.copiar(&m1, &m2);
+  m2.imprimir(cout);
+
+  //algoritmos.dijkstra(&m1,m1.buscarVertice('a'));
+  //algoritmos.prim(&m1);
+  //algoritmos.kruskal(&m1);
 
   //m1.elimVertice(m1.buscarVertice('a'));
   //m1.elimVertice(m1.buscarVertice('c'));

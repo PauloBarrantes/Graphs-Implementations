@@ -116,7 +116,7 @@ class Relaciones1_1{
 			int hayR = 0;
 			Relacion* actual = primera;
 
-			while(actual->siguiente != 0 && !hayR){
+			while(actual != 0 && !hayR){
 				if(actual->elemento1 == elemento1 && actual->elemento2 == elemento2){
 					hayR = 1;
 				}
