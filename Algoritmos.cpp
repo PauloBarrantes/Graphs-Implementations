@@ -204,7 +204,8 @@ using namespace std;
 			//Condición de Dijkstra.
 			int costoPivote;
 			int indicePivote;
-			while(diccionario.numElem() != grafo->numVertices()){
+			actual = grafo->primerVertice();
+			while(diccionario.numElem() != grafo->numVertices() && actual != 0){
 				  //Escogencia del pivote
 					costoPivote = infty;
 					for(int i=0;i<numV;++i){
@@ -239,7 +240,7 @@ using namespace std;
 				if(destinos[i]){
 					cout << grafo->etiqueta(destinos[i]) << " | ";
 			  }else{
-					cout << "$ | "
+					cout << "$ | ";
 				}
 			}
 			cout << endl;
