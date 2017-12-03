@@ -4,12 +4,13 @@
 
 using namespace std;
 
-GeneradorGrafos::GeneradorGrafos(){}
+GeneradorGrafos::GeneradorGrafos(){
+    srand (time(NULL));
+}
 
 GeneradorGrafos::~GeneradorGrafos(){}
 
 Grafo* GeneradorGrafos::grafoCompleto(int n){
-  srand (time(NULL));
   Grafo * grafo = new Grafo();
   int peso = 0;
   char inicial = '0';
@@ -18,22 +19,23 @@ Grafo* GeneradorGrafos::grafoCompleto(int n){
     inicial++;
   }
   Grafo::Vertice v1 = grafo->primerVertice();
-  Grafo::Vertice v2 = grafo->siguienteVertice(v1);
-  for(int i = 0; i < n; ++i){
-    for(int j = 0; i < n; ++j){
+  Grafo::Vertice v2;
+
+  while(v1 != 0){
+    v2 = grafo->siguienteVertice(v1);
+    while(v2 != 0){
       peso = rand() % 50 + 1;
       if(!grafo->adyacentes(v1,v2)){
         grafo->agrArista(v1,v2,peso);
       }
       v2 = grafo->siguienteVertice(v2);
     }
-    grafo->siguienteVertice(v1);
+    v1 = grafo->siguienteVertice(v1);
   }
   return grafo;
 }
 
 Grafo* GeneradorGrafos::grafoCasiCompleto(int n){
-  srand (time(NULL));
   Grafo * grafo = new Grafo();
   grafo = this->grafoCompleto(n);
   Relaciones1_1<int,Grafo::Vertice> R11;
@@ -55,7 +57,6 @@ Grafo* GeneradorGrafos::grafoCasiCompleto(int n){
 }
 
 Grafo* GeneradorGrafos::grafoMuyIncompleto(int n){
-  srand (time(NULL));
   Grafo * grafo = new Grafo();
   Relaciones1_1<int,Grafo::Vertice> R11;
   //crea vertices

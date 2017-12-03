@@ -2,7 +2,7 @@
 #define grafonodirigidoMatriz_2017
 
 #include <iostream>
-#define M 11
+#define M 70
 
 class Grafo {
     private:

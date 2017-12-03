@@ -27,7 +27,6 @@ using namespace std;
         Test::Test(){
 			      algoritmo = new Algoritmos();
 			      genGrafos = new GeneradorGrafos();
-
             //Grafo completo
             grafoN1G1 = 0;
             grafoN2G1 = 0;
@@ -108,7 +107,9 @@ using namespace std;
           // INICIO grafo Completo //
           //grafoCompleto
           grafoN1G1 = genGrafos->grafoCompleto(N1);
+          cout << "crea grafo completo n1" <<endl;
           grafoN2G1 = genGrafos->grafoCompleto(N2);
+          cout << "crea grafo completo n2" <<endl;
           grafoN3G1 = genGrafos->grafoCompleto(N3);
 
           //Test de Algoritmos
