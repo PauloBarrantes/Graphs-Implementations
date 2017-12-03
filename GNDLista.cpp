@@ -262,15 +262,13 @@ using namespace std;
                 arista = arista->siguienteArista;
             }
         }
-        if(encontrado == 0){
-            std::cout << "No se encontraron más vértices adyacentes" << '\n';
-            return 0;
-        }else{
+
+          if(arista->siguienteArista){
             arista = arista->siguienteArista;
             return arista->verticeA;
-
-        }
-
+          }else{
+            return 0;
+          }
     }
     Grafo::Vertice Grafo::buscarVertice(char etiqueta){
         Grafo::Vertice v = primero;
