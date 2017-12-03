@@ -11,6 +11,11 @@ class CDCD{
 
   private:
     Conjunto* primerConjunto;
+    /*!
+       \brief "Busca el conjunto al que corresponde una etiqueta"
+       \param "Entra la etiqueta del conjunto que se quiere buscar"
+       \return "Retorna el conjunto que corresponde a la etiqueta"
+    */
     Conjunto* buscarConjunto(int conjId){
       Conjunto* buscado = 0;
       Conjunto* actual = this->primerConjunto;
@@ -24,6 +29,11 @@ class CDCD{
       }
       return buscado;
     }
+    /*!
+       \brief "Busca el conjunto anterior en la lista a otro"
+       \param "Entra el conjunto del que se quiere saber su anterior"
+       \return "Retorna el conjunto anterior en la lista al parametro"
+    */
     Conjunto* buscarAnterior(Conjunto* conj1){
       Conjunto* anterior = 0;
       Conjunto* actual = this->primerConjunto;
@@ -57,6 +67,11 @@ class CDCD{
           delete siguienteElemento;
         }
       }
+      /*!
+         \brief "Imprime el elemento y los siguientes"
+         \param "Pasa como parametro el ostream"
+         \return "El ostream"
+      */
       ostream& imprimir(ostream& salida){
         salida << this->elemento << ", ";
         //this->elemento->imprimir(salida);
@@ -83,6 +98,11 @@ class CDCD{
           delete siguiente;
         }
       }
+      /*!
+         \brief "Agrega un elemento a la sublista de un conjunto"
+         \param "Entra el elemento que se quiere agregar"
+         \return "No retorna nada"
+      */
       void agregarElemento(T elem){
         CajitaElem* nuevoElemento = new CajitaElem(elem);
         nuevoElemento->siguienteElemento = this->primerElemento;
@@ -108,13 +128,28 @@ class CDCD{
         delete primerConjunto;
       }
     }
+    /*!
+       \brief "Vacía el conjunto de conjuntos"
+       \param "No tiene parámetros"
+       \return "No retorna nada"
+    */
     void vaciar(){
       delete this;
       this->primerConjunto = 0;
     }
+    /*!
+       \brief "Pregunta si el CDCD está vacío"
+       \param "No tiene parámetros"
+       \return "Retorna 1 si el primerConjunto es no nulo, 0 caso contrario"
+    */
     bool vacio(){
       return !primerConjunto;
     }
+    /*!
+       \brief "Busca el conjunto al que pertenece un elemento"
+       \param "Entra el elemento que se quiere buscar"
+       \return "Retorna el identificador del conjunto al que pertenece el elemento"
+    */
     int conjuntoAlQuePertenece(T elem){
       Conjunto* conjAlQuePertenece = 0;
       bool encontro = false;
@@ -133,12 +168,22 @@ class CDCD{
       }
       return conjAlQuePertenece->identificador;
     }
+    /*!
+       \brief "Agrega un conjunto a la lista principal de conjuntos"
+       \param "Entra el primer elemento que se quiere agregar al conjunto y la etiqueta del nuevo conjunto"
+       \return "No retorna nada"
+    */
     void agregarConjunto(int nuevoId,T elem){
       Conjunto* nuevoConj = new Conjunto(nuevoId);
       nuevoConj->siguiente = this->primerConjunto;
       this->primerConjunto = nuevoConj;
       nuevoConj->agregarElemento(elem);
     }
+    /*!
+       \brief "Hace la union de dos conjuntos, el identificador del nuevo conjunto es el del primer parámetro"
+       \param "Entran los identificadores de los conjuntos que se quiere unir"
+       \return "No retorna nada"
+    */
     void unirConjuntos(int conj1,int conj2){
       Conjunto* conjA = buscarConjunto(conj1);
       Conjunto* conjB = buscarConjunto(conj2);
