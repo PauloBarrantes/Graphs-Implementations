@@ -9,7 +9,7 @@
 #include <time.h>
 
 //#include "GNDLista.h"
-//#include "GNDMatriz.h"
+#include "GNDMatriz.h"
 #include "GeneradorDeGrafos.h"
 #include "Algoritmos.h"
 

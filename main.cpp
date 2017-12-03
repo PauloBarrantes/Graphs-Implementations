@@ -7,8 +7,8 @@ using namespace std;
 
 int main(int argc, char const *argv[]) {
 
-    Menu menucito;
-  
-    return 0;
+  Test* test = new Test();
+  test->testGeneral();
+  return 0;
 
 }
