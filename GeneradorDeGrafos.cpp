@@ -45,13 +45,20 @@ Grafo* GeneradorGrafos::grafoCasiCompleto(int n){
     R11.agregar(i,actual);
     actual = grafo->siguienteVertice(actual);
   }
+  cout << "Todo inicializado para borrar aristas" << endl;
   int v1 = 0;
   int v2 = 0;
   //quitamos 1/6 de las aristas
-  for(int i = 0; n*(n-1)/12; ++i){
-    v1 = rand() % n + 1;
-    v2 = rand() % n + 1;
-    grafo->elimArista(R11.imagen(v1),R11.imagen(v2));
+  for(int i = 0; i < (n*(n-1))/12; ++i){
+    v1 = rand() % n;
+    v2 = rand() % n;
+    //cout<<v1<<", "<<v2<<endl;
+    if(grafo->adyacentes(R11.imagen(v1),R11.imagen(v2))){
+      grafo->elimArista(R11.imagen(v1),R11.imagen(v2));
+      cout << "Eliminó arista" << endl;
+    }else{
+      --i;
+    }
   }
   return grafo;
 }

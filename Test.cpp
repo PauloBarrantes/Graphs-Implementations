@@ -104,98 +104,95 @@ using namespace std;
         }
 
         void Test::testCompleto(){
-          // INICIO grafo Completo //
-          //grafoCompleto
-          grafoN1G1 = genGrafos->grafoCompleto(N1);
-          cout << "crea grafo completo n1" <<endl;
-          grafoN2G1 = genGrafos->grafoCompleto(N2);
-          cout << "crea grafo completo n2" <<endl;
-          grafoN3G1 = genGrafos->grafoCompleto(N3);
-
-          //Test de Algoritmos
-          // ----- Algorithm 1 --- grafoCompleto //
-          cout << "Prueba de los grafos Completo con el algoritmo Dijkstra " <<endl;
-          cout << "N1" << endl;
-          testDijkstra(grafoN1G1);
-          cout << "N2" <<endl;
-          testDijkstra(grafoN2G1);
-          cout << "N3"<<endl;
-          testDijkstra(grafoN3G1);
-
-		  // ----- Algorithm 2 --- grafoCompleto //
-          cout << "Prueba de los grafos Completo con el algoritmo Floyd " <<endl;
-          cout << "N1" << endl;
-          testFloyd(grafoN1G1); //Tiempo de ejecución de Floyd con n1
-          cout << "N2" <<endl;
-          testFloyd(grafoN2G1);//Tiempo de ejecución de Floyd con n2
-          cout << "N3"<<endl;
-          testFloyd(grafoN3G1);//Tiempo de ejecución de Floyd con n3
-
-
-		  // ----- Algorithm 3 --- grafoCompleto //
-          cout << "Prueba de los grafos Completo con el algoritmo Prim " <<endl;
-          cout << "N1" << endl;
-          testPrim(grafoN1G1); //Tiempo de ejecución de Prim con n1
-          cout << "N2" <<endl;
-          testPrim(grafoN2G1);//Tiempo de ejecución de Prim con n2
-          cout << "N3"<<endl;
-          testPrim(grafoN3G1);//Tiempo de ejecución de Prim con n3
-
-		  // ----- Algorithm 4 --- grafoCompleto //
-          cout << "Prueba de los grafos Completo con el algoritmo Kruskal " <<endl;
-          cout << "N1" << endl;
-          testKruskal(grafoN1G1); //Tiempo de ejecución de Kruskal con n1
-          cout << "N2" <<endl;
-          testKruskal(grafoN2G1);//Tiempo de ejecución de Kruskal con n2
-          cout << "N3"<<endl;
-          testKruskal(grafoN3G1);//Tiempo de ejecución de Kruskal con n3
-
-      // // ----- Algorithm 5 --- grafoCompleto //
-      //     cout << "Prueba de los grafos Completo con el algoritmo Iguales " <<endl;
-      //     cout << "N1" << endl;
-      //     testIguales(grafoN1G1); //Tiempo de ejecución de Iguales con n1
-      //     cout << "N2" <<endl;
-      //     testIguales(grafoN2G1);//Tiempo de ejecución de Iguales con n2
-      //     cout << "N3"<<endl;
-      //     testIguales(grafoN3G1);//Tiempo de ejecución de Iguales con n3
+      //     // INICIO grafo Completo //
+      //     //grafoCompleto
+      //     grafoN1G1 = genGrafos->grafoCompleto(N1);
+      //     grafoN2G1 = genGrafos->grafoCompleto(N2);
+      //     grafoN3G1 = genGrafos->grafoCompleto(N3);
       //
-      // // ----- Algorithm 6 --- grafoCompleto //
-      //     cout << "Prueba de los grafos Completo con el algoritmo Copiar " <<endl;
+      //     //Test de Algoritmos
+      //     // ----- Algorithm 1 --- grafoCompleto //
+      //     cout << "Prueba de los grafos Completo con el algoritmo Dijkstra " <<endl;
       //     cout << "N1" << endl;
-      //     testCopiar(grafoN1G1); //Tiempo de ejecución de Copiar con n1
+      //     testDijkstra(grafoN1G1);
       //     cout << "N2" <<endl;
-      //     testCopiar(grafoN2G1);//Tiempo de ejecución de Copiar con n2
+      //     testDijkstra(grafoN2G1);
       //     cout << "N3"<<endl;
-      //     testCopiar(grafoN3G1);//Tiempo de ejecución de Copiar con n3
-
-          //liberamos la memoria
-          delete grafoN1G1;
-          delete grafoN2G1;
-          delete grafoN3G1;
-
-          //creamos grafos para el problemaDelVendedor
-          grafoN1G1 = genGrafos->grafoCompleto(NV1);
-          grafoN2G1 = genGrafos->grafoCompleto(NV2);
-          grafoN3G1 = genGrafos->grafoCompleto(NV3);
-
-      // ----- Algorithm 7 --- grafoCompleto //
-          cout << "Prueba de los grafos Completo con el algoritmo ProblemaDelVendedor " <<endl;
-          cout << "N1" << endl;
-          testVendedor(grafoN1G1); //Tiempo de ejecución de ProblemaDelVendedor con n1
-          cout << "N2" <<endl;
-          testVendedor(grafoN2G1);//Tiempo de ejecución de ProblemaDelVendedor con n2
-          cout << "N3"<<endl;
-          testVendedor(grafoN3G1);//Tiempo de ejecución de ProblemaDelVendedor con n3
-
-          //liberamos la memoria
-          delete grafoN1G1;
-          delete grafoN2G1;
-          delete grafoN3G1;
-        }
+      //     testDijkstra(grafoN3G1);
+      //
+		  // // ----- Algorithm 2 --- grafoCompleto //
+      //     cout << "Prueba de los grafos Completo con el algoritmo Floyd " <<endl;
+      //     cout << "N1" << endl;
+      //     testFloyd(grafoN1G1); //Tiempo de ejecución de Floyd con n1
+      //     cout << "N2" <<endl;
+      //     testFloyd(grafoN2G1);//Tiempo de ejecución de Floyd con n2
+      //     cout << "N3"<<endl;
+      //     testFloyd(grafoN3G1);//Tiempo de ejecución de Floyd con n3
+      //
+      //
+		  // // ----- Algorithm 3 --- grafoCompleto //
+      //     cout << "Prueba de los grafos Completo con el algoritmo Prim " <<endl;
+      //     cout << "N1" << endl;
+      //     testPrim(grafoN1G1); //Tiempo de ejecución de Prim con n1
+      //     cout << "N2" <<endl;
+      //     testPrim(grafoN2G1);//Tiempo de ejecución de Prim con n2
+      //     cout << "N3"<<endl;
+      //     testPrim(grafoN3G1);//Tiempo de ejecución de Prim con n3
+      //
+		  // // ----- Algorithm 4 --- grafoCompleto //
+      //     cout << "Prueba de los grafos Completo con el algoritmo Kruskal " <<endl;
+      //     cout << "N1" << endl;
+      //     testKruskal(grafoN1G1); //Tiempo de ejecución de Kruskal con n1
+      //     cout << "N2" <<endl;
+      //     testKruskal(grafoN2G1);//Tiempo de ejecución de Kruskal con n2
+      //     cout << "N3"<<endl;
+      //     testKruskal(grafoN3G1);//Tiempo de ejecución de Kruskal con n3
+      //
+      // // // ----- Algorithm 5 --- grafoCompleto //
+      // //     cout << "Prueba de los grafos Completo con el algoritmo Iguales " <<endl;
+      // //     cout << "N1" << endl;
+      // //     testIguales(grafoN1G1); //Tiempo de ejecución de Iguales con n1
+      // //     cout << "N2" <<endl;
+      // //     testIguales(grafoN2G1);//Tiempo de ejecución de Iguales con n2
+      // //     cout << "N3"<<endl;
+      // //     testIguales(grafoN3G1);//Tiempo de ejecución de Iguales con n3
+      // //
+      // // // ----- Algorithm 6 --- grafoCompleto //
+      // //     cout << "Prueba de los grafos Completo con el algoritmo Copiar " <<endl;
+      // //     cout << "N1" << endl;
+      // //     testCopiar(grafoN1G1); //Tiempo de ejecución de Copiar con n1
+      // //     cout << "N2" <<endl;
+      // //     testCopiar(grafoN2G1);//Tiempo de ejecución de Copiar con n2
+      // //     cout << "N3"<<endl;
+      // //     testCopiar(grafoN3G1);//Tiempo de ejecución de Copiar con n3
+      //
+      //     //liberamos la memoria
+      //     delete grafoN1G1;
+      //     delete grafoN2G1;
+      //     delete grafoN3G1;
+      //
+      //     //creamos grafos para el problemaDelVendedor
+      //     grafoN1G1 = genGrafos->grafoCompleto(NV1);
+      //     grafoN2G1 = genGrafos->grafoCompleto(NV2);
+      //     grafoN3G1 = genGrafos->grafoCompleto(NV3);
+      //
+      // // ----- Algorithm 7 --- grafoCompleto //
+      //     cout << "Prueba de los grafos Completo con el algoritmo ProblemaDelVendedor " <<endl;
+      //     cout << "N1" << endl;
+      //     testVendedor(grafoN1G1); //Tiempo de ejecución de ProblemaDelVendedor con n1
+      //     cout << "N2" <<endl;
+      //     testVendedor(grafoN2G1);//Tiempo de ejecución de ProblemaDelVendedor con n2
+      //     cout << "N3"<<endl;
+      //     testVendedor(grafoN3G1);//Tiempo de ejecución de ProblemaDelVendedor con n3
+      //
+      //     //liberamos la memoria
+      //     delete grafoN1G1;
+      //     delete grafoN2G1;
+      //     delete grafoN3G1;
+         }
 
         void Test::testCasiCompleto(){
           /// INICIO DEL grafo CasiCompleto
-
           grafoN1G2 = genGrafos->grafoCasiCompleto(N1);
           grafoN2G2 = genGrafos->grafoCasiCompleto(N2);
           grafoN3G2 = genGrafos->grafoCasiCompleto(N3);
@@ -265,8 +262,8 @@ using namespace std;
           grafoN2G2 = genGrafos->grafoCasiCompleto(NV2);
           grafoN3G2 = genGrafos->grafoCasiCompleto(NV3);
 
-          // ----- Algorithm 7 --- grafoCompleto //
-          cout << "Prueba de los grafos Completo con el algoritmo ProblemaDelVendedor " <<endl;
+          // ----- Algorithm 7 --- grafoCasiCompleto //
+          cout << "Prueba de los grafos CasiCompleto con el algoritmo ProblemaDelVendedor " <<endl;
           cout << "N1" << endl;
           testVendedor(grafoN1G2); //Tiempo de ejecución de ProblemaDelVendedor con n1
           cout << "N2" <<endl;
