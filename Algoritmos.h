@@ -18,7 +18,7 @@ struct Tripleta
 
 	Tripleta(){}
 
-	Tripleta(Grafo::Vertice v1, Grafo::Vertice v2, int peos){
+	Tripleta(Grafo::Vertice v1, Grafo::Vertice v2, int peso){
 		this->v1 = v1;
 		this->v2 = v2;
 		this->peso = peso;
@@ -42,6 +42,7 @@ struct Tripleta
 
 	std::ostream& operator<<(std::ostream& salida){
 		salida << "(" << v1 << "," << v2 << "," << peso << ")";
+		return salida;
 	}
 
 };

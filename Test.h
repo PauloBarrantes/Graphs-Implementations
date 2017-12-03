@@ -47,6 +47,7 @@ class Test {
         void testKruskal(Grafo*);
         void testIguales(Grafo*);
         void testCopiar(Grafo*);
+        void testVendedor(Grafo*);
 };
 
 #endif
