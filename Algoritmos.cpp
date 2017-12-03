@@ -293,7 +293,7 @@ using namespace std;
 			//Condición de Dijkstra.
 			int costoPivote;
 			int indicePivote;
-			while(diccionario.numElem() != grafo->numVertices()){
+			while(diccionario.numElem() != grafo->numVertices() && actual != 0){
 				  //Escogencia del pivote
 					costoPivote = infty;
 					for(int i=0;i<numV;++i){
@@ -316,13 +316,19 @@ using namespace std;
 					}
 					adyacente = grafo->siguienteVerticeAdy(R11.imagen(indicePivote),adyacente);
 				}
+				actual = grafo->siguienteVertice(actual);
 	    }
-			//Imprimimos el vector de costos.
-			for(int i=0;i<numV; ++i){
-				if(costos[i]){
-					cout << grafo->etiqueta(destinos[i]) << "<---" << costos[i] << "--->" << grafo->etiqueta(R11.imagen(i))<<endl;
+			if(diccionario.numElem() == grafo->numVertices()){
+				//Imprimimos el vector de costos.
+				for(int i=0;i<numV; ++i){
+					if(costos[i]){
+						cout << grafo->etiqueta(destinos[i]) << "<---" << costos[i] << "--->" << grafo->etiqueta(R11.imagen(i))<<endl;
+					}
 				}
+		  }else{
+				cout << "El grafo no es conexo" << endl;
 			}
+
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
