@@ -1,3 +1,9 @@
+/*!
+   \file "DiccionarioLSE.h"
+   \brief "Diccionario implementado con una lista SE"
+   \author "Paulo Barrantes"
+   \date "1"/"12"/"2017"
+*/
 #ifndef diccionario_2017
 #define diccionario_2017
 #include <iostream>
@@ -45,15 +51,30 @@ class DiccionarioLSE  {
         ~DiccionarioLSE(){
             delete primero;
         }
+        /*!
+           \brief "Vacia el diccionario"
+           \param "No recibe"
+           \return "No retorna"
+        */
         void vaciar(){
             delete primero;
             numeroElementos = 0;
             this->primero = 0;
             this->ultimo = 0;
         }
+        /*!
+           \brief "Determina si el diccionario está vacio"
+           \param "No recibe"
+           \return "No retorna"
+        */
         int vacia(){
             return !numeroElementos;
         }
+        /*!
+           \brief "Agrega un elemento al diccionario"
+           \param "Recibe un elemento"
+           \return "No retorna"
+        */
         void agregar(T elemento){
             if(!pertenece(elemento)){
                 if(vacia()){
@@ -70,6 +91,11 @@ class DiccionarioLSE  {
                 cout << "El elemento que ha querido ingresar, ya pertenece al diccionario entonces no se ha agregado" << endl;
             }
         }
+        /*!
+           \brief "Borra el elemento"
+           \param "Recibe el elemento que queremos borrar"
+           \return "No retorna"
+        */
         void borrar(T elemento){
             if(!vacia()){
                 int encontrado = 0;
@@ -107,6 +133,11 @@ class DiccionarioLSE  {
                 cout << "El elemento que ha querido borrar, no pertenece al diccionario por lo tanto no se ha borrado" << endl;
             }
         }
+        /*!
+           \brief "Determina si el diccionario está vacio"
+           \param "No recibe"
+           \return "No retorna"
+        */
         int pertenece(T elemento){
             int encontrado = 0;
             if (!vacia()){
@@ -122,9 +153,19 @@ class DiccionarioLSE  {
             }
             return encontrado;
         }
+        /*!
+           \brief "Devuelve el número de elementos"
+           \param "No recibe"
+           \return "Retorna el número de elementos"
+        */
         int numElem(){
             return numeroElementos;
         }
+        /*!
+           \brief "Imprime el diccionario"
+           \param "Un Ostream&"
+           \return "Ostream&"
+        */
         ostream& imprimir (ostream& salida){
             primero->print();
             return salida;
