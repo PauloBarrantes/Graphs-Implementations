@@ -45,7 +45,6 @@ Grafo* GeneradorGrafos::grafoCasiCompleto(int n){
     R11.agregar(i,actual);
     actual = grafo->siguienteVertice(actual);
   }
-  cout << "Todo inicializado para borrar aristas" << endl;
   int v1 = 0;
   int v2 = 0;
   //quitamos 1/6 de las aristas
@@ -55,7 +54,6 @@ Grafo* GeneradorGrafos::grafoCasiCompleto(int n){
     //cout<<v1<<", "<<v2<<endl;
     if(grafo->adyacentes(R11.imagen(v1),R11.imagen(v2))){
       grafo->elimArista(R11.imagen(v1),R11.imagen(v2));
-      cout << "Eliminó arista" << endl;
     }else{
       --i;
     }
