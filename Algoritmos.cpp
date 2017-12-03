@@ -184,6 +184,10 @@ using namespace std;
 			Grafo::Vertice actual = grafo->primerVertice();
 
 			for(int i=0; i<numV;++i){
+				destinos[i] = 0;
+			}
+
+			for(int i=0; i<numV;++i){
 				R11.agregar(i,actual);
 				actual = grafo->siguienteVertice(actual);
 			}
@@ -232,7 +236,11 @@ using namespace std;
 			//Imprimimos el vector de destinos.
 			cout<<endl<<"Destinos: "<<endl;
 			for(int i=0;i<numV; ++i){
-				cout << grafo->etiqueta(destinos[i]) << " | ";
+				if(destinos[i]){
+					cout << grafo->etiqueta(destinos[i]) << " | ";
+			  }else{
+					cout << "$ | "
+				}
 			}
 			cout << endl;
 		}
