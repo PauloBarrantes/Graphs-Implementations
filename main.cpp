@@ -5,13 +5,14 @@
 #include "CDCD.h"
 #include "GNDMatriz.h"
 //#include "GNDLista.h"
-#include "Test.h"
+//#include "Test.h"
+#include "Menu.h"
 using namespace std;
 
 int main(int argc, char const *argv[]) {
 
-  Test* test = new Test();
-  test->testGeneral();
+  Menu* menu = new Menu();
+  menu->controlador();
   return 0;
 
 }
