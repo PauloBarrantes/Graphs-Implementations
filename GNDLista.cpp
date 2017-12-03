@@ -260,23 +260,19 @@ using namespace std;
         Grafo::Arista* arista = vertice1->sublista;
         int encontrado = 0;
         while(arista!=0 && !encontrado){
-            if(arista->verticeA == vertice2 || arista->verticeB == vertice2){
+            if(arista->verticeB == vertice2){
+                //cout << "1" << endl;
                 encontrado=1;
             }else{
                 arista = arista->siguienteArista;
             }
         }
 
-          if(arista->siguienteArista){
-            arista = arista->siguienteArista;
-            if(arista->verticeB == vertice2){
-              return arista->verticeB;
-            }else{
-              return arista->verticeA;
-            }
-          }else{
-            return 0;
-          }
+        if(encontrado){
+          return arista->verticeA;
+        }else{
+          return 0;
+        }
     }
     Grafo::Vertice Grafo::buscarVertice(char etiqueta){
         Grafo::Vertice v = primero;
