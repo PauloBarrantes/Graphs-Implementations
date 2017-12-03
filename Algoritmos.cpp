@@ -148,6 +148,7 @@ using namespace std;
 					}
 				}
 			}
+			/*
       cout<<"Distancias: "<< endl;
 			for(int i=0;i<numV; ++i){
 				for(int j=0;j<numV; ++j){
@@ -173,6 +174,7 @@ using namespace std;
 				}
 				cout<<endl;
 			}
+			*/
 		}
 
 		void Algoritmos::dijkstra(Grafo* grafo, Grafo::Vertice vertice){
@@ -230,6 +232,7 @@ using namespace std;
 				actual = grafo->siguienteVertice(actual);
 	    }
 			//Imprimimos el vector de costos.
+			/*
 			cout<<"Costos: "<< endl;
 			for(int i=0;i<numV; ++i){
 				cout << costos[i] << " | ";
@@ -244,6 +247,7 @@ using namespace std;
 				}
 			}
 			cout << endl;
+			*/
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
 			CDCD<Grafo::Vertice> conjunto;
@@ -272,6 +276,7 @@ using namespace std;
 
 			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
 			// La condición de parada es que numAristas sea numVertices-1
+			/*
 			while(numeroA != grafo->numVertices()-1 && !cola.vacia()){
 				Tripleta par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
@@ -284,6 +289,7 @@ using namespace std;
 			if(numeroA != grafo->numVertices()-1){
 				cout << "El grafo no es conexo" << endl;
 			}
+			*/
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
@@ -333,6 +339,7 @@ using namespace std;
 				}
 				actual = grafo->siguienteVertice(actual);
 	    }
+			/*
 			if(diccionario.numElem() == grafo->numVertices()){
 				//Imprimimos el vector de costos.
 				for(int i=0;i<numV; ++i){
@@ -343,7 +350,7 @@ using namespace std;
 		  }else{
 				cout << "El grafo no es conexo" << endl;
 			}
-
+			*/
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
@@ -359,6 +366,7 @@ using namespace std;
 			numSolucionesOptimas = 0;
 			numSolucionesFactibles = 0;
 		 	problemaDelVendedorR(grafo, primerV,1);
+			/*
 			if(haySolucion){
 				cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
 				for(int i = 0; i < grafo->numVertices();i++){
@@ -370,6 +378,7 @@ using namespace std;
 			}else{
 				cout << "No hay solucion" << endl;
 			}
+			*/
 		}
 
 		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice, int numVertice){

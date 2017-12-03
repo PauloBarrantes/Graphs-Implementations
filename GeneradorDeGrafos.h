@@ -1,8 +1,8 @@
 #ifndef GeneradorGrafos_2017
 #define GeneradorGrafos_2017
 #include <iostream>
-//#include "GNDLista.cpp"
-#include "GNDMatriz.cpp"
+//#include "GNDLista.h"
+#include "GNDMatriz.h"
 using namespace std;
 class GeneradorGrafos {
 
