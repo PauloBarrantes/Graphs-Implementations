@@ -1,5 +1,5 @@
-//#include "GNDMatriz.h"
-#include "GNDLista.h"
+#include "GNDMatriz.h"
+//#include "GNDLista.h"
 #include "Algoritmos.h"
 
 #include <iostream>
@@ -61,7 +61,7 @@ int main(int argN, char const *argV[]){
   m1.imprimir(cout);
   cout << endl;
   */
-  
+
   cout << "Este es el grafo 1: " << endl;
   m1.imprimir(cout);
   cout << endl;
@@ -92,7 +92,33 @@ int main(int argN, char const *argV[]){
   cout << endl;
 
 
-  //m2.imprimir(cout);
+  cout << "Este es el grafo 2: " << endl;
+  m2.imprimir(cout);
+  cout << endl;
+
+  cout << "Floyd inicio" << endl;
+  algoritmos.floyd(&m2);
+  cout << "Floyd fin" << endl;
+  cout << endl;
+
+  cout << "Kruskal inicio" << endl;
+  algoritmos.kruskal(&m2);
+  cout << "Kruskal fin" << endl;
+  cout << endl;
+
+  cout << "Prim inicio" << endl;
+  algoritmos.prim(&m2);
+  cout << "Prim fin" << endl;
+  cout << endl;
+
+  cout << "Dijkstra inicio" << endl;
+  algoritmos.dijkstra(&m2, m2.buscarVertice('n'));
+  cout << "Dijkstra fin" << endl;
+  cout << endl;
+
+  cout << "Problema del vendedor inicion" << endl;
+  algoritmos.problemaDelVendedor(&m2);
+  cout << "Problema del vendedor fin" << endl;
   cout << endl;
 
   return 0;
