@@ -53,6 +53,7 @@ class Algoritmos{
 		int costoActual;
 		int costoGlobal;
 		int numVertice;
+		int haySolucion;
 
 		Grafo::Vertice * solucionActual;
 		Grafo::Vertice * solucionGanadora;
