@@ -5,6 +5,7 @@ using namespace std;
 		Algoritmos::Algoritmos(){
 			costoActual = 0;
 			costoGlobal = 0;
+			haySolucion = 0;
 		}
 
 		Algoritmos::~Algoritmos(){
@@ -261,13 +262,17 @@ using namespace std;
 
 			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
 			// La condición de parada es que numAristas sea numVertices-1
-			while(numeroA != grafo->numVertices()-1){
+			while(numeroA != grafo->numVertices()-1 && !cola.vacia()){
 				Tripleta par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
 					cout << grafo->etiqueta(par.v1) << "<---" << grafo->peso(par.v1,par.v2) << "--->" << grafo->etiqueta(par.v2)<<endl;
 					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
 					++numeroA;
 				}
+			}
+
+			if(numeroA != grafo->numVertices()-1){
+				cout << "El grafo no es conexo" << endl;
 			}
 		}
 
@@ -333,6 +338,7 @@ using namespace std;
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){
 			costoActual = 0;
+			haySolucion = 0;
 			costoGlobal = infty;
 		 	Grafo::Vertice primerV = grafo->primerVertice();
  			solucionActual = new Grafo::Vertice[grafo->numVertices()];
@@ -343,13 +349,17 @@ using namespace std;
 			numSolucionesOptimas = 0;
 			numSolucionesFactibles = 0;
 		 	problemaDelVendedorR(grafo, primerV,1);
-			cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
-			for(int i = 0; i < grafo->numVertices();i++){
-				cout <<"Vértice -> " << grafo->etiqueta(solucionGanadora[i])<< "->";
+			if(haySolucion){
+				cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
+				for(int i = 0; i < grafo->numVertices();i++){
+					cout <<"Vértice -> " << grafo->etiqueta(solucionGanadora[i])<< "->";
+				}
+				cout << endl;
+				cout << "Numero de soluciones factibles: " << numSolucionesFactibles << endl;
+				cout << "Numero de soluciones optimas: " << numSolucionesOptimas << endl;
+			}else{
+				cout << "No hay solucion" << endl;
 			}
-			cout << endl;
-			cout << "Numero de soluciones factibles: " << numSolucionesFactibles << endl;
-			cout << "Numero de soluciones optimas: " << numSolucionesOptimas << endl;
 		}
 
 		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice, int numVertice){
@@ -363,6 +373,7 @@ using namespace std;
 						solucionActual[numVertice] = verticeAdy;
 
 		 				if(numVertice == grafo->numVertices()-1 && grafo->adyacentes(solucionActual[0], verticeAdy)){//Preguntamos por condición de parada
+							haySolucion = 1;
 							++numSolucionesFactibles;
 							costoActual +=  grafo->peso(solucionActual[0], verticeAdy);
 								if(costoActual < costoGlobal){

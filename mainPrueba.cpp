@@ -15,6 +15,7 @@ int main(int argN, char const *argV[]){
   m1.agrVertice('c');
   m1.agrVertice('d');
   m1.agrVertice('e');
+  m1.agrVertice('f');
 
   m2.agrVertice('l');
   m2.agrVertice('m');
@@ -60,7 +61,7 @@ int main(int argN, char const *argV[]){
   m1.imprimir(cout);
   cout << endl;
   */
-  ///*
+  
   cout << "Este es el grafo 1: " << endl;
   m1.imprimir(cout);
   cout << endl;

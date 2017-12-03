@@ -250,7 +250,11 @@ using namespace std;
         return vertice->siguienteCaja;
     }
     Grafo::Vertice Grafo::primerVerticeAdy(Grafo::Vertice vertice){
-        return (vertice->sublista)->verticeA;
+        Grafo::Vertice v = 0;
+        if(vertice->sublista){
+          v = (vertice->sublista)->verticeA;
+        }
+        return v;
     }
     Grafo::Vertice Grafo::siguienteVerticeAdy(Grafo::Vertice vertice1, Grafo::Vertice vertice2){
         Grafo::Arista* arista = vertice1->sublista;
