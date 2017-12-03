@@ -239,7 +239,7 @@ using namespace std;
 				if(destinos[i]){
 					cout << grafo->etiqueta(destinos[i]) << " | ";
 			  }else{
-					cout << "$ | "
+					cout << "$ | ";
 				}
 			}
 			cout << endl;
