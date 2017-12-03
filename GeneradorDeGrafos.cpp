@@ -81,10 +81,10 @@ Grafo* GeneradorGrafos::grafoMuyIncompleto(int n){
   int v1 = 0;
   int v2 = 0;
   int peso = 0;
-  //quitamos 1/6 de las aristas
-  for(int i = 0; n*2; ++i){
-    v1 = rand() % n + 1;
-    v2 = rand() % n + 1;
+  //ponemos 2n aristas
+  for(int i = 0; i < n*2; ++i){
+    v1 = rand() % n;
+    v2 = rand() % n;
     peso = rand() % 50 + 1;
     grafo->agrArista(R11.imagen(v1),R11.imagen(v2),peso);
   }
