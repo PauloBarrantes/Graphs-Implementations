@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include <iostream>
+#include "Algoritmos.h"
 using namespace std;
 
 
@@ -406,22 +407,125 @@ void Menu::InstruccionesAlgoritmos(){
 }
 
 void Menu::dijkstra (){
+    if(grafo1 != 0){
+        algoritmo->dijkstra(grafo1);
+    }else{
+        cout<<"Grafo no creado" <<endl;
+        iniciar();
+        grafo1->agrVertice('a');
+        grafo1->agrVertice('b');
+        grafo1->agrVertice('c');
+        agrArista();
+        agrArista();
+        agrArista();
 
+        algoritmo->dijkstra(grafo1);
+
+
+    }
 }
 void Menu::floyd (){
+    if(grafo1 != 0){
+        algoritmo->floyd(grafo1);
+    }else{
+        cout<<"Grafo no creado" <<endl;
+        iniciar();
+        grafo1->agrVertice('a');
+        grafo1->agrVertice('b');
+        grafo1->agrVertice('c');
+        agrArista();
+        agrArista();
+        agrArista();
 
+        algoritmo->floyd(grafo1);
+
+
+    }
 }
 void Menu::prim (){
+    if(grafo1 != 0){
+        algoritmo->prim(grafo1);
+    }else{
+        cout<<"Grafo no creado" <<endl;
+        iniciar();
+        grafo1->agrVertice('a');
+        grafo1->agrVertice('b');
+        grafo1->agrVertice('c');
+        agrArista();
+        agrArista();
+        agrArista();
 
+        algoritmo->prim(grafo1);
+
+
+    }
 }
 void Menu::kruskal (){
+    if(grafo1 != 0){
+        algoritmo->kruskal(grafo1);
+    }else{
+        cout<<"Grafo no creado" <<endl;
+        iniciar();
+        grafo1->agrVertice('a');
+        grafo1->agrVertice('b');
+        grafo1->agrVertice('c');
+        agrArista();
+        agrArista();
+        agrArista();
 
+        algoritmo->kruskal(grafo1);
+
+
+    }
 }
 void Menu::copiar (){
+    if(grafo1 != 0){
+        if(grafo2 != 0 ){
+            grafo2 = new Grafo();
+        }
+        algoritmo->copiar(grafo1,grafo2);
+    }else{
+        cout<<"Grafo no creado" <<endl;
+        iniciar();
+        if(grafo2 !=0){
+            grafo2 = new Grafo();
+        }
+        grafo1->agrVertice('a');
+        grafo1->agrVertice('b');
+        grafo1->agrVertice('c');
+        agrArista();
+        agrArista();
+        agrArista();
 
+        algoritmo->problemaDelVendedor(grafo1, grafo2);
+
+
+    }
 }
 void Menu::iguales (){
+    if(grafo1 != 0){
+        if(grafo2 != 0){
+            grafo2 = new Grafo();
+        }
+        algoritmo->iguales(grafo1, grafo2);
+    }else{
 
+        cout<<"Grafo no creado" <<endl;
+        iniciar();
+        if(grafo2 != 0){
+            grafo2 = new Grafo();
+        }
+        grafo1->agrVertice('a');
+        grafo1->agrVertice('b');
+        grafo1->agrVertice('c');
+        agrArista();
+        agrArista();
+        agrArista();
+
+        algoritmo->problemaDelVendedor(grafo1);
+
+
+    }
 }
 void Menu::problemaDelVendedor (){
     if(grafo1 != 0){
@@ -436,7 +540,6 @@ void Menu::problemaDelVendedor (){
         agrArista();
         agrArista();
 
-        cout <<"Llega Aca" <<endl;
         algoritmo->problemaDelVendedor(grafo1);
 
 

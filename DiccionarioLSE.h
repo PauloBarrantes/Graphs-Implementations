@@ -115,8 +115,9 @@ class DiccionarioLSE  {
                 while(p != 0 && !encontrado){
                     if(p->elemento == elemento){
                         encontrado = 1;
+                    }else{
+                        p = p->siguiente;
                     }
-                    p = p->siguiente;
                 }
             }
             return encontrado;

@@ -115,7 +115,7 @@ using namespace std;
             (ver1->numAdy)++;
             (ver2->numAdy)++;
             numeroAristas++;
-        
+
     }
     void Grafo::modificarPeso(Grafo::Vertice ver1,Grafo::Vertice ver2, int peso){
         Arista* arista = ver1->sublista;
@@ -138,25 +138,35 @@ using namespace std;
     // Asumiendo que solo vamos a eliminar vértices aislados
     void Grafo::elimVertice(Grafo::Vertice vertice){
         Grafo::Vertice v = primero;
-
+        int eliminado = 0;
+        cout << "1" << endl;
         if(primero == vertice){
+            cout << "2" << endl;
             primero = vertice->siguienteCaja;
             vertice->siguienteCaja = 0;
             delete v;
         }else{
-            while(v->siguienteCaja != 0){
+            cout << "3" << endl;
+            while(v->siguienteCaja != 0 && eliminado){
+                cout << "4" << endl;
                 if(v->siguienteCaja == vertice){
+                    cout << "5" << endl;
+                    Grafo::Vertice victima = v->siguienteCaja;
                     v->siguienteCaja = (v->siguienteCaja)->siguienteCaja; // Lo brincamos
-                    (v->siguienteCaja)->siguienteCaja = 0;
-                    delete v->siguienteCaja;
+                    victima->siguienteCaja = 0;
+                    delete victima;
+                    eliminado = 1;
                 }else{
+                    cout << "6" << endl;
                     v = v->siguienteCaja;
                 }
             }
             if(v->siguienteCaja != 0){
-
+                cout << "7" << endl;
+                ultimo = v;
             }
         }
+        cout << "8" << endl;
         --numeroVertices;
     }
     void Grafo::elimArista(Grafo::Vertice ver1, Grafo::Vertice ver2){
@@ -166,17 +176,21 @@ using namespace std;
                 arista1->siguienteArista = 0;
                 delete arista1;
             }else{
-                int encontrado = 0;
-                while(arista1->siguienteArista != 0 && !encontrado){
+                if(arista1 != 0){
+                    int encontrado = 0;
+                    while(arista1->siguienteArista != 0 && !encontrado){
 
-                    if((arista1->siguienteArista)->verticeA == ver2){
-                        arista1->siguienteArista = (arista1->siguienteArista)->siguienteArista;
-                        (arista1->siguienteArista)->siguienteArista = 0;
-                        encontrado =1;
-                        delete arista1;
-                    }else{
-                        arista1 = arista1->siguienteArista;
+                        if((arista1->siguienteArista)->verticeA == ver2){
+                            Grafo::Arista* victima = arista1->siguienteArista;
+                            arista1->siguienteArista = (arista1->siguienteArista)->siguienteArista;
+                            victima->siguienteArista = 0;
+                            encontrado =1;
+                            delete victima;
+                        }else{
+                            arista1 = arista1->siguienteArista;
+                        }
                     }
+
                 }
 
             }
@@ -187,18 +201,22 @@ using namespace std;
                 arista2->siguienteArista = 0;
                 delete arista2;
             }else{
-                int encontrado = 0;
-                while(arista2->siguienteArista != 0 && !encontrado){
+                if(arista2 != 0 ){
+                    int encontrado = 0;
+                    while(arista2->siguienteArista != 0 && !encontrado){
 
-                    if((arista2->siguienteArista)->verticeA == ver1){
-                        arista2->siguienteArista = (arista2->siguienteArista)->siguienteArista;
-                        (arista2->siguienteArista)->siguienteArista = 0;
-                        encontrado =1;
-                        delete arista2;
-                    }else{
-                        arista2 = arista2->siguienteArista;
+                        if((arista2->siguienteArista)->verticeA == ver1){
+                            Grafo::Arista* victima =  arista2->siguienteArista;
+                            arista2->siguienteArista = victima->siguienteArista; //Saltamos la arista que vamos a eliminar
+                            victima->siguienteArista = 0;
+                            encontrado =1;
+                            delete victima;
+                        }else{
+                            arista2 = arista2->siguienteArista;
+                        }
                     }
                 }
+
             }
         (ver1->numAdy)--;
         (ver2->numAdy)--;
@@ -246,7 +264,7 @@ using namespace std;
         Grafo::Arista* arista = vertice1->sublista;
         int encontrado = 0;
         while(arista!=0 && !encontrado){
-            if(arista->verticeA == vertice2){
+            if(arista->verticeA == vertice2 || arista->verticeB == vertice2){
                 encontrado=1;
             }else{
                 arista = arista->siguienteArista;
@@ -255,7 +273,7 @@ using namespace std;
         if(encontrado == 0){
             std::cerr << "No se encontraron más vértices adyacentes" << '\n';
         }else{
-            arista->siguienteArista;
+            arista = arista->siguienteArista;
         }
 
         return arista->verticeA;
