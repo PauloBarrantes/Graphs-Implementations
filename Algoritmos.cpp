@@ -244,24 +244,16 @@ using namespace std;
 			Grafo::Vertice vertice = grafo->primerVertice();
 			Grafo::Vertice ady = 0;
 			int i = 1;
-			cout << "1" << endl;
 			while(vertice != 0){
-				cout << "1.1" << endl;
 				ady = grafo->primerVerticeAdy(vertice);
 				conjunto.agregarConjunto(i, vertice);
-				cout << "1.2" << endl;
 				while(ady != 0){
-					cout << "1.3" << endl;
 					Tripleta tripleta =  Tripleta(vertice, ady, grafo->peso(vertice, ady));
-					cout << "1.4" << endl;
 					if(!cola.pertenece(tripleta)){ //Preguntar si la arista ya fue guardada
-						cout << "1.5" << endl;
 						cola.agregar(tripleta,grafo->peso(vertice, ady));
 					}
-					cout << "1.6" << endl;
 					ady = grafo->siguienteVerticeAdy(vertice, ady);
 				}
-				cout << "1.7" << endl;
 				vertice = grafo->siguienteVertice(vertice);
 				++i;
 			}
@@ -269,18 +261,14 @@ using namespace std;
 
 			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
 			// La condición de parada es que numAristas sea numVertices-1
-			cout << "2" << endl;
 			while(numeroA != grafo->numVertices()-1){
-				cout<< numeroA << endl;
 				Tripleta par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
 					cout << grafo->etiqueta(par.v1) << "<---" << grafo->peso(par.v1,par.v2) << "--->" << grafo->etiqueta(par.v2)<<endl;
 					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
-					cout << "Une el conjunto, PAULO" << endl;
 					++numeroA;
 				}
 			}
-			cout<< "Sale del while" << endl;
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
@@ -335,8 +323,6 @@ using namespace std;
 					cout << grafo->etiqueta(destinos[i]) << "<---" << costos[i] << "--->" << grafo->etiqueta(R11.imagen(i))<<endl;
 				}
 			}
-
-			cout << endl;
 		}
 
 		void Algoritmos::problemaDelVendedor(Grafo* grafo){

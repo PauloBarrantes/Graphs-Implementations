@@ -68,17 +68,17 @@ int main(int argN, char const *argV[]){
   cout << "Floyd inicio" << endl;
   algoritmos.floyd(&m1);
   cout << "Floyd fin" << endl;
-
+  cout << endl;
 
   cout << "Kruskal inicio" << endl;
   algoritmos.kruskal(&m1);
   cout << "Kruskal fin" << endl;
-
+  cout << endl;
 
   cout << "Prim inicio" << endl;
   algoritmos.prim(&m1);
   cout << "Prim fin" << endl;
-
+  cout << endl;
 
   cout << "Dijkstra inicio" << endl;
   algoritmos.dijkstra(&m1, m1.buscarVertice('d'));
@@ -89,7 +89,7 @@ int main(int argN, char const *argV[]){
   algoritmos.problemaDelVendedor(&m1);
   cout << "Problema del vendedor fin" << endl;
   cout << endl;
-  
+
 
   //m2.imprimir(cout);
   cout << endl;
