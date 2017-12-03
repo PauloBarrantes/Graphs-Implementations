@@ -222,6 +222,7 @@ using namespace std;
 					}
 					adyacente = grafo->siguienteVerticeAdy(R11.imagen(indicePivote),adyacente);
 				}
+				actual = grafo->siguienteVertice(actual);
 	    }
 			//Imprimimos el vector de costos.
 			cout<<"Costos: "<< endl;
