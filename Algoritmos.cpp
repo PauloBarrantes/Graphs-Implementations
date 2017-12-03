@@ -245,17 +245,24 @@ using namespace std;
 			Grafo::Vertice vertice = grafo->primerVertice();
 			Grafo::Vertice ady = 0;
 			int i = 1;
+			cout << "1" << endl;
 			while(vertice != 0){
+				cout << "1.1" << endl;
 				ady = grafo->primerVerticeAdy(vertice);
 				conjunto.agregarConjunto(i, vertice);
+				cout << "1.2" << endl;
 				while(ady != 0){
+					cout << "1.3" << endl;
 					Tripleta tripleta =  Tripleta(vertice, ady, grafo->peso(vertice, ady));
+					cout << "1.4" << endl;
 					if(!cola.pertenece(tripleta)){ //Preguntar si la arista ya fue guardada
+						cout << "1.5" << endl;
 						cola.agregar(tripleta,grafo->peso(vertice, ady));
 					}
+					cout << "1.6" << endl;
 					ady = grafo->siguienteVerticeAdy(vertice, ady);
 				}
-
+				cout << "1.7" << endl;
 				vertice = grafo->siguienteVertice(vertice);
 				++i;
 			}
@@ -263,6 +270,7 @@ using namespace std;
 
 			// Sacamos la primera Arista de la cola de prioridad, y nos fijamos si V1 y V2, no están en el mismo conjunto, si no están, desplegamos la arista, y unimos estos dos conjuntos.
 			// La condición de parada es que numAristas sea numVertices-1
+			cout << "2" << endl;
 			while(numeroA != grafo->numVertices()-1){
 				Tripleta par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
@@ -336,14 +344,18 @@ using namespace std;
  			solucionActual = new Grafo::Vertice[grafo->numVertices()];
 		 	solucionGanadora = new Grafo::Vertice[grafo->numVertices()];
 			solucionActual[0] = primerV;
+			solucionGanadora[0] = primerV;
 		 	diccionarioH.agregar(primerV);
-		 	problemaDelVendedorR(grafo, primerV,1);
 			numSolucionesOptimas = 0;
-			numSolucionesFactibles =0;
+			numSolucionesFactibles = 0;
+		 	problemaDelVendedorR(grafo, primerV,1);
 			cout <<"CaminoMásCorto: " <<costoGlobal<<endl;
 			for(int i = 0; i < grafo->numVertices();i++){
 				cout <<"Vértice -> " << grafo->etiqueta(solucionGanadora[i])<< "->";
 			}
+			cout << endl;
+			cout << "Numero de soluciones factibles: " << numSolucionesFactibles << endl;
+			cout << "Numero de soluciones optimas: " << numSolucionesOptimas << endl;
 		}
 
 		void Algoritmos::problemaDelVendedorR(Grafo* grafo, Grafo::Vertice vertice, int numVertice){
@@ -358,19 +370,18 @@ using namespace std;
 
 		 				if(numVertice == grafo->numVertices()-1 && grafo->adyacentes(solucionActual[0], verticeAdy)){//Preguntamos por condición de parada
 							++numSolucionesFactibles;
+							costoActual +=  grafo->peso(solucionActual[0], verticeAdy);
 								if(costoActual < costoGlobal){
-									numSolucionesOptimas = 0;
+									numSolucionesOptimas = 1;
 			 						costoGlobal = costoActual;
-									costoGlobal += grafo->peso(solucionActual[0], verticeAdy);
 									for(int i = 1; i < grafo->numVertices();++i){
 										solucionGanadora[i] = solucionActual[i];
 									}
 			 					}
+
 								if(costoActual == costoGlobal){
 									numSolucionesOptimas++;
 								}
-
-
 		 				}else{
 							problemaDelVendedorR(grafo, verticeAdy, numVertice+1);//Hacemos el llamado recursivo
 		 				}

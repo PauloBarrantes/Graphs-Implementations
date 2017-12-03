@@ -49,6 +49,7 @@ int main(int argN, char const *argV[]){
   m2.agrArista(m2.buscarVertice('q'),m2.buscarVertice('r'),1);
   m2.agrArista(m2.buscarVertice('r'),m2.buscarVertice('s'),14);
 
+  /*
   m1.elimArista(m1.buscarVertice('e'),m1.buscarVertice('d'));
   m1.elimArista(m1.buscarVertice('c'),m1.buscarVertice('e'));
   m1.elimArista(m1.buscarVertice('a'),m1.buscarVertice('d'));
@@ -58,8 +59,8 @@ int main(int argN, char const *argV[]){
   m1.elimVertice(m1.buscarVertice('e'));
   m1.imprimir(cout);
   cout << endl;
-
-  /*
+  */
+  ///*
   cout << "Este es el grafo 1: " << endl;
   m1.imprimir(cout);
   cout << endl;
@@ -88,7 +89,7 @@ int main(int argN, char const *argV[]){
   algoritmos.problemaDelVendedor(&m1);
   cout << "Problema del vendedor fin" << endl;
   cout << endl;
-  */
+  
 
   //m2.imprimir(cout);
   cout << endl;
