@@ -40,6 +40,7 @@ class Test {
     public:
         Test();
         ~Test();
+        // Acá realizamos los pruebas y obtenemos los tiempos de los algoritmos
         void testGeneral();
         void testDijkstra(Grafo*);
         void testFloyd(Grafo*);
