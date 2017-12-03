@@ -208,7 +208,6 @@ using namespace std;
 			int indicePivote;
 			actual = grafo->primerVertice();
 			while(diccionario.numElem() != grafo->numVertices() && actual != 0){
-				//cout << "1" << endl;
 				  //Escogencia del pivote
 					costoPivote = infty;
 					for(int i=0;i<numV;++i){
@@ -222,7 +221,6 @@ using namespace std;
 				diccionario.agregar(R11.imagen(indicePivote));
 				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.imagen(indicePivote));
 				while(adyacente!=0){
-					//cout << "2" << endl;
 				 	if(!diccionario.pertenece(adyacente)){
 							if(costos[indicePivote] + grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
 			 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente) + costos[indicePivote];

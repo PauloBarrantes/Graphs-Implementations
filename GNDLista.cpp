@@ -269,7 +269,8 @@ using namespace std;
         }
 
         if(encontrado){
-          return arista->verticeA;
+          arista->siguienteArista;
+          return arista->verticeB;
         }else{
           return 0;
         }

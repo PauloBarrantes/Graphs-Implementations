@@ -2,8 +2,8 @@
 #define menu_2017
 #include "DiccionarioLSE.h"
 #include "Algoritmos.h"
-//#include "GNDMatriz.h"
-#include "GNDLista.h"
+#include "GNDMatriz.h"
+//#include "GNDLista.h"
 class Menu {
     private:
         Grafo* grafo1;
