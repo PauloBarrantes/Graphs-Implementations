@@ -235,7 +235,6 @@ using namespace std;
 			cout << endl;
 		}
 		void Algoritmos::kruskal(Grafo* grafo){
-			DiccionarioLSE<Grafo::Vertice>diccionario;
 			CDCD<Grafo::Vertice> conjunto;
 			CPArbol<Tripleta> cola;
 			int numAristas = 0;
@@ -272,13 +271,16 @@ using namespace std;
 			// La condición de parada es que numAristas sea numVertices-1
 			cout << "2" << endl;
 			while(numeroA != grafo->numVertices()-1){
+				cout<< numeroA << endl;
 				Tripleta par = cola.sacar();
 				if(conjunto.conjuntoAlQuePertenece(par.v1) != conjunto.conjuntoAlQuePertenece(par.v2)){
 					cout << grafo->etiqueta(par.v1) << "<---" << grafo->peso(par.v1,par.v2) << "--->" << grafo->etiqueta(par.v2)<<endl;
 					conjunto.unirConjuntos(conjunto.conjuntoAlQuePertenece(par.v1),conjunto.conjuntoAlQuePertenece(par.v2));
+					cout << "Une el conjunto, PAULO" << endl;
 					++numeroA;
 				}
 			}
+			cout<< "Sale del while" << endl;
 		}
 
 		void Algoritmos::prim (Grafo* grafo){
