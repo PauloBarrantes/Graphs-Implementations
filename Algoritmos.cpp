@@ -222,10 +222,10 @@ using namespace std;
 				Grafo::Vertice adyacente = grafo->primerVerticeAdy(R11.imagen(indicePivote));
 				while(adyacente!=0){
 				 	if(!diccionario.pertenece(adyacente)){
-						if(costos[indicePivote] + grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
-		 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente) + costos[indicePivote];
-				 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
-						}
+							if(costos[indicePivote] + grafo->peso(R11.imagen(indicePivote), adyacente) < costos[R11.preimagen(adyacente)]){
+			 					costos[R11.preimagen(adyacente)] = grafo->peso(R11.imagen(indicePivote), adyacente) + costos[indicePivote];
+					 		 	destinos[R11.preimagen(adyacente)] = R11.imagen(indicePivote);
+							}
 					}
 					adyacente = grafo->siguienteVerticeAdy(R11.imagen(indicePivote),adyacente);
 				}

@@ -269,7 +269,11 @@ using namespace std;
 
           if(arista->siguienteArista){
             arista = arista->siguienteArista;
-            return arista->verticeA;
+            if(arista->verticeB == vertice2){
+              return arista->verticeB;
+            }else{
+              return arista->verticeA;
+            }
           }else{
             return 0;
           }
